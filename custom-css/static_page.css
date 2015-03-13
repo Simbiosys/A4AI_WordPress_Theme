@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+.print-only { display: none; }
+.wpcf7 br { clear: both; }
+.wpcf7 ol { padding: 0 1.5em; }
+.wpcf7 input[type="checkbox"] { vertical-align: baseline; }
+.wpcf7 ul { padding: 0 1.5em; list-style-type: disc; }
+.wpcf7 label { min-width: 150px; float: left; }
+ARTICLE.post .wpcf7 H2 { font-size: 1.3em; margin: 1em 0 0.2em; }
+ARTICLE.post .wpcf7 H3 { font-size: 1.2em; margin: 1em 0 0.2em; }
+
+
+ARTICLE.post { float: none; margin: 50px auto; width: 1130px;}
+
+ARTICLE.post H2 { margin-bottom: 30px;}
+
+ARTICLE.post .entry div.wp-caption {float: right; background-color: #efefef; padding: 15px 15px 0 15px; margin: 10px 0 10px 20px; border: 1px solid #919191;}
+
+ARTICLE.post .entry .wp-caption {font-size: 12px; text-align: center;}
+
+#after_title_post { display: none;}
+
+#sidebar { display: none;}
+
+#post_container { width: 100%;}
+
+#article_container { width: 100%;} 
+
+#Nav #menu-main LI .sub-menu LI.current-menu-item A {
+	background-color: #2cb0b7; }
+
+

@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+.image_blog_home { border: none; width: 309px; height: 174px; margin-bottom: 0; }
+
+ARTICLE.post { width: 309px; margin-right: 50px;}
+
+ARTICLE.post H2 {line-height: 20px; }
+
+ARTICLE.post H2 A { font-family: 'Chivo',Helvetica,Arial,sans-serif; font-size:18px; color:#333; text-transform:uppercase; font-weight:bold;}
+
+ARTICLE.post p {font-size: 14px;}
+
+ARTICLE.post .Head { float: none; width: 309px;}
+
+ARTICLE.post .entry { float: none; width: 309px;}
+
+ARTICLE.post .Content { float: none; width: 309px;}
+
+.ListBlog ARTICLE.post H6.metadata { display: none;}
+
+ARTICLE.post .postmetadata { display: none;}
+
+#Roll .ListBlog img { max-height: 170px; max-width: 310px; }
+
+#show_cat {margin-bottom: 70px;}
+
+.categories li { float: left; margin-right: 20px; margin-top: 20px;}
+
+.categories li a { text-decoration: none; background-color: #8ad811; border-radius: 30px 30px; padding: 5px 10px; color: #3D3D3D; font-family: 'Chivo',Helvetica,Arial,sans-serif; text-transform: uppercase; font-weight: bold;}
+
+
+.categories p { visibility: hidden; }
+
+

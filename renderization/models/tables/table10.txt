@@ -1,0 +1,33 @@
+<table class="data-table data-table-10" id="broadband-gender-table">
+<caption>{{table}} Mobile broadband is far more expensive for women</caption>
+<thead>
+<tr>
+<th class="empty"></th>
+<th colspan="2">Mobile broadband (prepaid handset based, 500 MB)</th>
+</tr>
+<tr>
+<th>Country</th>
+<th>as % of GNI p.c.</th>
+<th> as % of GNI p.c. adjusted for gender gap at 30% lower incomes</th>
+</tr>
+</thead>
+<tbody>
+<tr class='emerging'><td class='country'>Peru</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >2.8%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >4.0%</td></tr>
+<tr class='emerging'><td class='country'>Colombia</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >3.3%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >4.7%</td></tr>
+<tr class='developing'><td class='country'>Morocco</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >4.7%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >6.7%</td></tr>
+<tr class='developing'><td class='country'>Nigeria</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >5.6%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >8.0%</td></tr>
+<tr class='developing'><td class='country'>Kenya</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >7.5%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >10.7%</td></tr>
+<tr class='developing'><td class='country'>Yemen</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >12.2%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >17.4%</td></tr>
+<tr class='developing'><td class='country'>Rwanda</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >15.1%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >21.5%</td></tr>
+<tr class='developing'><td class='country'>Uganda</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >18.2%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >26.0%</td></tr>
+<tr class='developing'><td class='country'>Sierra Leone</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >25.1%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >35.8%</td></tr>
+<tr class='developing'><td class='country'>Malawi</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >28.1%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >40.2%</td></tr>
+<tr class='developing'><td class='country'>Haiti</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >34.1%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >48.8%</td></tr>
+<tr class='developing'><td class='country'>Mozambique</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >40.5%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >57.9%</td></tr>
+<tr class='developing'><td class='country'>Senegal</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >56.8%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >81.1%</td></tr>
+<tr class='developing'><td class='country'>Niger</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >88.9%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >126.9%</td></tr>
+<tr class='developing'><td class='country'>Liberia</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >113.8%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >162.5%</td></tr>
+<tr class='developing'><td class='country'>S. Tomé & Principe</td><td class='gni' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c.'  >138.3%</td><td class='gap' data-title='Mobile Broadband (prepaid handset based, 500 MB) as % of GNI p.c. adjusted for gender gap at 30% lower incomes'  >197.5%</td></tr>
+
+</tbody>
+</table>
