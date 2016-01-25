@@ -32,13 +32,12 @@
     xAxis: {
       values: [25, 50, 75],
       width: 20,
-      min: 0,
       max: 100
     },
     yAxis: {
-      values: [25, 50],
+      values: [25, 50, 75],
       width: 20,
-      max: 60,
+      max: 100,
       lowToHigh: false
     },
     radius: {
@@ -48,7 +47,7 @@
     },
     divisions: {
       show: true,
-      texts: ["NOT AFFORDABLE", "AFFORDABLE", "LESS AFFORDABLE", "MORE AFFORDABLE"]
+      texts: ["PROHIBITIVE", "AFFORDABLE", "NOT AFFORDABLE", "MORE AFFORDABLE"]
     },
     labelMargin: 15,
     hasInnerBubble: true,

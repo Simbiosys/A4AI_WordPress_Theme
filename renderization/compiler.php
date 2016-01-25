@@ -39,12 +39,12 @@
 
 		public function compileTemplate($templateName, $partial) {
 			if ($partial) {
-				$templatePath = $this->templatesPath."partials/".$templateName.'.hbs';			
+				$templatePath = $this->templatesPath . "partials/".$templateName.'.hbs';			
 			} else {
 				$templatePath = $this->templatesPath.$templateName;			
 			}
 			
-			if (file_exists($templatePath)) {
+			if (file_exists($templatePath) && is_file($templatePath)) {
 				$template = file_get_contents($templatePath);
 
 				$compiledTemplate = LightnCandy::compile($template, Array(
@@ -63,6 +63,7 @@
 				$name = explode('.', $templateName);
 				$name = $this->compiledTemplatesPath . $name[0];
 				
+				echo "fpc: $name\n";
 				file_put_contents($name, $compiledTemplate);
 			} else {
 				error_log(date("Y-m-d H:i:s").': File: '.$templatePath.' does not exists');

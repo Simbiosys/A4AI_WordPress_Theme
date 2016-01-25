@@ -146,7 +146,6 @@
     if (code) {
       selectCountry(code);
       selectBar(code);
-      global.functions.selectCountryInSelector(code);
       this.hideRequestBox();
       global.sref.search.value = name;
       global.previousSearch = name.toUpperCase();

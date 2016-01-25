@@ -32,8 +32,7 @@
     xAxis: {
       values: [25, 50, 75],
       width: 20,
-      min: 12,
-      max: 80
+      max: 100
     },
     yAxis: {
       values: [25, 50, 75],

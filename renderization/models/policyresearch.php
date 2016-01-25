@@ -17,6 +17,7 @@ class PolicyResearchModel {
 		$this->getPage($wpdb, $data, "Policy-The-Knowledge-Bank", "bank");
 		$this->getPage($wpdb, $data, "Policy-Affordability-Report", "report");
 		$this->getPage($wpdb, $data, "Policy-Best-Practices", "practices");
+		$this->getPage($wpdb, $data, "Thematic-Papers-and-Briefings", "papers");
 
 		return $data;
 	}
