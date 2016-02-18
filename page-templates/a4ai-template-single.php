@@ -15,7 +15,7 @@
 	$post_slug = $post->post_name;
 	
 	echo "<div class='no-header'>";
-	
+
 	get_header();
 	$html = $renderer->renderTemplate($post_slug);
 
@@ -33,7 +33,7 @@
 	} else {
 		echo $html;
 	}
-	
+
 	echo "</div>";
 
 	die();

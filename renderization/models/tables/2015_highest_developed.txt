@@ -1,0 +1,74 @@
+<table id="2015-highest-adi-developed" class="data-table whole-ranking" data-sortable data-collapsable="collapsed">
+   <caption>{{caption}}</caption>
+   <thead>
+      <tr>
+         <th>Country</th>
+         <th>Access Sub-index Score</th>
+         <th>Infrastructure Sub-index Score</th>
+         <th>ADI Composite Score</th>
+         <th data-status="up">2015 ADI Rank</th>
+      </tr>
+   </thead>
+   <tbody>
+   	<tr class="developing">
+   		<td class="country" data-value="Rwanda">
+   			<img src="{{host}}/images/flags-big/RWA.png" class="flag" alt="flag of Rwanda">
+   			Rwanda
+   		</td>
+   		<td class="access" data-value="54.42" data-number data-title="Access Sub-Index Score">54.42</td>
+   		<td class="infrastructure" data-value="51.90" data-number data-title="Infrastructure Sub-Index Score">51.90</td>
+   		<td class="index" data-value="53.13" data-number="" data-title="ADI Composite Sore"><span>53.13</span></td>
+   		<td class="ranking" data-value="11" data-number data-title="Rank 2015">
+   			<span>11</span>
+   		</td>
+   	</tr>
+   	<tr class="developing">
+   		<td class="country" data-value="Uganda">
+   			<img src="{{host}}/images/flags-big/UGA.png" class="flag" alt="flag of Uganda">
+   			Uganda
+   		</td>
+   		<td class="access" data-value="56.53" data-number data-title="Access Sub-Index Score">56.53</td>
+   		<td class="infrastructure" data-value="42.44" data-number data-title="Infrastructure Sub-Index Score">42.44</td>
+   		<td class="index" data-value="49.40" data-number="" data-title="ADI Composite Sore"><span>49.40</span></td>
+   		<td class="ranking" data-value="16" data-number data-title="Rank 2015">
+   			<span>16</span>
+   		</td>
+   	</tr>
+   	<tr class="developing">
+   		<td class="country" data-value="Gambia">
+   			<img src="{{host}}/images/flags-big/GMB.png" class="flag" alt="flag of Gambia">
+   			Gambia
+   		</td>
+   		<td class="access" data-value="49.12" data-number data-title="Access Sub-Index Score">49.12</td>
+   		<td class="infrastructure" data-value="42.81" data-number data-title="Infrastructure Sub-Index Score">42.81</td>
+   		<td class="index" data-value="45.82" data-number="" data-title="ADI Composite Sore"><span>45.82</span></td>
+   		<td class="ranking" data-value="20" data-number data-title="Rank 2015">
+   			<span>20</span>
+   		</td>
+   	</tr>
+   	<tr class="developing">
+   		<td class="country" data-value="Myanmar">
+   			<img src="{{host}}/images/flags-big/MMR.png" class="flag" alt="flag of Myanmar">
+   			Myanmar
+   		</td>
+   		<td class="access" data-value="31.88" data-number data-title="Access Sub-Index Score">31.88</td>
+   		<td class="infrastructure" data-value="53.67" data-number data-title="Infrastructure Sub-Index Score">53.67</td>
+   		<td class="index" data-value="42.57" data-number="" data-title="ADI Composite Sore"><span>42.57</span></td>
+   		<td class="ranking" data-value="27" data-number data-title="Rank 2015">
+   			<span>27</span>
+   		</td>
+   	</tr>
+   	<tr class="developing">
+   		<td class="country" data-value="Tanzania">
+   			<img src="{{host}}/images/flags-big/TZA.png" class="flag" alt="flag of Tanzania">
+   			Tanzania
+   		</td>
+   		<td class="access" data-value="43.90" data-number data-title="Access Sub-Index Score">43.90</td>
+   		<td class="infrastructure" data-value="40.38" data-number data-title="Infrastructure Sub-Index Score">40.38</td>
+   		<td class="index" data-value="41.93" data-number="" data-title="ADI Composite Sore"><span>41.93</span></td>
+   		<td class="ranking" data-value="30" data-number data-title="Rank 2015">
+   			<span>30</span>
+   		</td>
+   	</tr>
+   </tbody>
+</table>

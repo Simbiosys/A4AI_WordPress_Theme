@@ -41,9 +41,12 @@ class DataModel {
 		$index = json_decode(file_get_contents($api_url . '/indicators/INDEX'), true);
 
 		// Index and subindices observations
-		$obs_index = json_decode(file_get_contents($api_url . '/visualisations/INDEX/ALL/LATEST'), true);
-		$obs_access = json_decode(file_get_contents($api_url . '/visualisations/ACCESS/ALL/LATEST'), true);
-		$obs_infrastructure = json_decode(file_get_contents($api_url . '/visualisations/INFRASTRUCTURE/ALL/LATEST'), true);
+		$obs_index = json_decode(file_get_contents($api_url . '/visualisations/INDEX/ALL'), true);
+		$obs_access = json_decode(file_get_contents($api_url . '/visualisations/ACCESS/ALL'), true);
+		$obs_infrastructure = json_decode(file_get_contents($api_url . '/visualisations/INFRASTRUCTURE/ALL'), true);
+
+		// Years
+		$years = json_decode(file_get_contents($api_url . '/years'), true);
 
 		return array(
 			"areas" => $areas,
@@ -51,7 +54,8 @@ class DataModel {
 			"index" => $index,
 			"obs_index" => $obs_index,
 			"obs_access" => $obs_access,
-			"obs_infrastructure" => $obs_infrastructure
+			"obs_infrastructure" => $obs_infrastructure,
+			"years" => $years
 		);
 	}
 }

@@ -13,15 +13,17 @@
 
 	global $post;
 	$post_slug = $post->post_name;
+	$post_type = $post->post_type;
+
+	$template = $post_type == 'report' ? $post_type : $post_slug;
 
 	get_header();
-	$html = $renderer->renderTemplate($post_slug);
+	$html = $renderer->renderTemplate($template);
 
 	if (!$html) {
 		echo '<main class="content">';
-			echo $renderer->renderTemplate("by");
-			echo '<div class="container">';
-				$id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$post_slug'");
+		echo '<div class="container">';
+				$id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$template'");
 				if ($id) {
 					echo apply_filters('the_content', get_post($id)->post_content);
 				} else {

@@ -48,6 +48,29 @@
       },
       elements: [
         {
+          name: "_year",
+          selector: "#year-selector",
+          onChange: function(index, value, parameters, selectors, initial) {
+            var option, _ref, _ref1;
+            if (settings.debug) {
+              console.log("year:onChange index:" + index + " value:" + value);
+            }
+
+            option = (_ref = selectors["#year-selector"]) != null ? (_ref1 = _ref.options) != null ? _ref1[index] : void 0 : void 0;
+            global.selections.year = value;
+            global.selections.yearOption = option;
+
+            // Update labels
+            var labels = document.querySelectorAll("[data-year]");
+            var labels_length = labels.length;
+
+            for (var i = 0; i < labels_length; i++) {
+              var label = labels[i];
+              label.innerHTML = value;
+            }
+          }
+        },
+        {
           name: "indicator",
           selector: "#indicator-selector",
           onChange: function(index, value, parameters, selectors, initial) {
@@ -58,7 +81,7 @@
             option = (_ref = selectors["#indicator-selector"]) != null ? (_ref1 = _ref.options) != null ? _ref1[index] : void 0 : void 0;
             global.selections.indicator = value;
             global.selections.indicatorOption = option;
-            return global.ref.countryIndicatorSelector.value = value;
+            global.ref.countryIndicatorSelector.value = value;
           }
         }, {
           name: "country",
@@ -120,6 +143,7 @@
     if (!global.functions.isMobile()) {
       charts = document.getElementById("charts");
       height = global.functions.getPageHeight();
+
       headerHeight = (_ref = document.getElementById("Header")) != null ? _ref.clientHeight : void 0;
       if (headerHeight) {
         height -= headerHeight;
@@ -146,6 +170,7 @@
     if (code) {
       selectCountry(code);
       selectBar(code);
+      global.functions.selectCountryInSelector(code);
       this.hideRequestBox();
       global.sref.search.value = name;
       global.previousSearch = name.toUpperCase();
@@ -154,9 +179,16 @@
   };
 
   global.functions.selectCountryInSelector = function(area) {
+    var option = global.ref.country_selector.querySelector("[value='" + area + "']");
+
+    if (!option) {
+      return;
+    }
+
     global.ref.country_selector.value = area;
     global.ref.country_selector.refresh();
-    return loadCountryDetail(area);
+
+    loadCountryDetail(area);
   };
 
   unselectCountry = function() {
@@ -222,8 +254,8 @@
     var area, name, val, value, _name;
     unselectCountry();
     area = info['data-area'];
-    _name = info['data-area_name'];
-    val = info['data-value'] ? parseFloat(info['data-value']).toFixed(2) : "-";
+    _name = info['data-short_name'];
+    val = info['data-value'] ? parseFloat(info['data-value']).toFixed(2) : "N/A";
     if (visor && area) {
       visor.innerHTML = '';
       visor.className = 'visor visor-full';
@@ -268,9 +300,11 @@
       c.innerHTML = "";
     }
     isVisible = c.offsetWidth > 0 || c.offsetHeight > 0;
+
     if (!isVisible) {
       return;
     }
+
     return map = wesCountry.maps.createMap({
       container: container,
       countryCodeName: "area",
@@ -293,7 +327,7 @@
         return emergingColours[Math.abs(value - minEmerging)];
       },
       onCountryClick: function(info) {
-        return global.functions.selectCountryInSelector(info.iso3);
+        global.functions.selectCountryInSelector(info.iso3);
       }
     });
   };
@@ -347,6 +381,7 @@
       groupMargin: 0.5,
       barMargin: 5,
       backColor: "none",
+      overColour: "#888",
       getElementColour: function(options, element, index) {
         var value;
         value = Math.round(element.value);
@@ -441,9 +476,10 @@
     }
     showLoading();
     indicator = global.selections.indicator;
-    year = global.selections.year;
+    //year = global.selections.year;
     host = this.settings.server.url;
-    url = "" + host + "/visualisations/" + indicator + "/ALL/" + year + "?callback=getObservationsCallback";
+    url = "" + host + "/visualisations/" + indicator + "/ALL" + "?callback=getObservationsCallback";
+
     return this.processJSONP(url);
   };
 
@@ -538,17 +574,32 @@
   renderData = function() {
     var areas, country;
     areas = global.data.areas;
-    global.minMaxDeveloping = global.functions.getMinMaxValue(areas, "DEVELOPING");
+    var areas_length = areas.length;
+    var year = global.selections.year;
+
+    var current_year_areas = [];
+
+    for (var i = 0; i < areas_length; i++) {
+      var area = areas[i];
+
+      if (area.year != year) {
+        continue;
+      }
+
+      current_year_areas.push(area);
+    }
+
+    global.minMaxDeveloping = global.functions.getMinMaxValue(current_year_areas, "DEVELOPING");
     global.colours.developingColours = wesCountry.colourRange([global.colours.developing_light, global.colours.developing], global.minMaxDeveloping.length);
-    global.minMaxEmerging = global.functions.getMinMaxValue(areas, "EMERGING");
+    global.minMaxEmerging = global.functions.getMinMaxValue(current_year_areas, "EMERGING");
     global.colours.emergingColours = wesCountry.colourRange([global.colours.emerging_light, global.colours.emerging], global.minMaxEmerging.length);
-    areas.sort(function(a, b) {
+    current_year_areas.sort(function(a, b) {
       return b.value - a.value;
     });
-    renderMap(areas, global.colours.developingColours, global.colours.emergingColours, global.minMaxDeveloping.min, global.minMaxEmerging.min);
-    renderBars(areas, global.colours.developingColours, global.colours.emergingColours, global.minMaxDeveloping.min, global.minMaxEmerging.min);
+    renderMap(current_year_areas, global.colours.developingColours, global.colours.emergingColours, global.minMaxDeveloping.min, global.minMaxEmerging.min);
+    renderBars(current_year_areas, global.colours.developingColours, global.colours.emergingColours, global.minMaxDeveloping.min, global.minMaxEmerging.min);
     setTimeout(function() {
-      return global.listFunctions.renderTable(areas, global.colours.developingColours, global.colours.emergingColours, global.minMaxDeveloping.min, global.minMaxEmerging.min);
+      return global.listFunctions.renderTable(current_year_areas, global.colours.developingColours, global.colours.emergingColours, global.minMaxDeveloping.min, global.minMaxEmerging.min);
     }, 100);
     if (global.countryRequested || global.countryDetailOpened) {
       country = global.countryRequested ? global.countryRequested : global.selections.country;
@@ -562,7 +613,7 @@
   };
 
   this.getObservationsCallback = function(data) {
-    var area, areaCode, areas, statistic, statistics, _i, _j, _len, _len1;
+    var area, areaCode, areas, statistic, statistics, _i, _j, _len, _len1, year;
     hideLoading();
     global.cache.indicators[global.selections.indicator] = data;
     if (global.selections.indicator === "WI_B" || global.selections.indicator === "WI_C") {
@@ -591,7 +642,13 @@
     for (_j = 0, _len1 = areas.length; _j < _len1; _j++) {
       area = areas[_j];
       areaCode = area.area;
-      global.data.areaDict[areaCode] = area;
+      year = area.year;
+
+      if (!global.data.areaDict[areaCode]) {
+        global.data.areaDict[areaCode] = {};
+      }
+
+      global.data.areaDict[areaCode][year] = area;
     }
     renderData();
     return showStatistics();
@@ -602,6 +659,7 @@
     statistics = global.data.statistics;
     averageEmerging = parseFloat(statistics.average_emerging).toFixed(2);
     averageDeveloping = parseFloat(statistics.average_developing).toFixed(2);
+
     global.functions.renderPieChart("#pies-emerging", averageEmerging, global.colours.emerging, true, global.selections.indicator);
     return global.functions.renderPieChart("#pies-developing", averageDeveloping, global.colours.developing, true, global.selections.indicator);
   };
@@ -648,25 +706,55 @@
   };
 
   loadOneIndicator = function(data, indicator) {
-    var area, element, length, observation, observations, ranked, value, _i, _len, _ref, _results;
+    var area, element, length, observation, observations, ranked, value, _i, _len, _ref, _results, year, area_name, code;
     global.cache.indicators[indicator] = data;
     observations = data != null ? (_ref = data.data) != null ? _ref.observations : void 0 : void 0;
     length = observations.length;
     _results = [];
+    var partial_results = {};
     for (_i = 0, _len = observations.length; _i < _len; _i++) {
       observation = observations[_i];
+      code = observation.code;
       area = observation.area;
+      area_name = observation.short_name;
       value = observation.value.toFixed(2);
       ranked = observation.ranking;
       element = global.indexValues[area];
+      year = observation.year;
       if (!element) {
         element = global.indexValues[area] = {};
       }
-      _results.push(element[indicator] = {
+
+      if (!partial_results[area]) {
+        partial_results[area] = {};
+      }
+
+      partial_results[area][year] = {
+        area: area,
+        area_name: area_name,
         value: value,
-        ranked: ranked
-      });
+        ranked: ranked,
+        year: year
+      };
+
+      if (!element[indicator]) {
+        element[indicator] = {};
+      }
+
+      element[indicator][year] = {
+        area: area,
+        area_name: area_name,
+        value: value,
+        ranked: ranked,
+        year: year
+      };
     }
+
+    for (var partial in partial_results) {
+      var data = partial_results[partial];
+      _results.push(data);
+    }
+
     return _results;
   };
 
@@ -681,6 +769,32 @@
       return loadOneIndicator(infrastructure, "INFRASTRUCTURE");
     }
   };
+
+  loadYears = function(years) {
+    years.sort(function(a, b) {
+      var a_value = a.value;
+      var b_value = b.value;
+
+      if (a_value === b_value) {
+        return 0;
+      }
+
+      return a_value < b_value ? 1 : -1;
+    });
+
+    global.ref.year_selector.innerHTML = "";
+
+    var years_length = years.length;
+
+    for (var i = 0; i < years_length; i++) {
+      var year = years[i].value;
+      var option = document.createElement("option");
+      option.value = year;
+      option.innerHTML = year;
+
+      global.ref.year_selector.appendChild(option);
+    }
+  }
 
   showIndicatorDetail = function() {
     var _ref;
@@ -720,6 +834,10 @@
   };
 
   getCountryColor = function(area_type, value) {
+    if (isNaN(value)) {
+      value = 0;
+    }
+
     var barColour, fullColour;
     if (area_type.toUpperCase() === "DEVELOPING") {
       barColour = global.colours.developingColours[Math.abs(value - global.minMaxDeveloping.min)];
@@ -728,6 +846,7 @@
       barColour = global.colours.emergingColours[Math.abs(value - global.minMaxEmerging.min)];
       fullColour = global.colours.emerging;
     }
+
     return {
       barColour: barColour,
       fullColour: fullColour
@@ -745,7 +864,7 @@
       provider_url = info != null ? (_ref2 = info.provider) != null ? _ref2.provider_url : void 0 : void 0;
       value = "<abbr title='Source: " + provider_name + " - " + provider_url + " (" + year + ")'>" + prefix + value + sufix + "</abbr>";
     } else {
-      value = "-";
+      value = "N/A";
     }
     return container != null ? container.innerHTML = value : void 0;
   };
@@ -758,11 +877,12 @@
   };
 
   loadCountryDetail = function(code) {
-    var area_type, colour, continent, continentName, data, groupNumber, label, meanValue, name, ranking, ranking_type, value, _ref, _ref1, _ref2, _ref3;
+    var area_type, colour, continent, continentName, data, groupNumber, label, meanValue, name, ranking, ranking_type, value, _ref, _ref1, _ref2, _ref3, year;
     bodyWrap();
     global.ref.country_detail.style.display = "block";
     global.countryDetailOpened = true;
-    data = global.data.areaDict[code];
+    year = global.selections.year;
+    data = global.data.areaDict[code][year];
     name = data.short_name;
     value = parseFloat(data.value);
     area_type = data.area_type ? (_ref = data.area_type) != null ? _ref.toUpperCase() : void 0 : "EMERGING";
@@ -773,9 +893,17 @@
     continentName = global.continents[continent];
     colour = getCountryColor(area_type, Math.round(value));
     getCountryExtraInfo(code, global.ref.population_label_this, global.ref.gni_label_this, global.ref.broadband_label_this, global.ref.poverty_label_this);
+
     if ((_ref1 = global.ref.country_flag) != null) {
       _ref1.src = (_ref2 = global.functions.getFlag(code)) != null ? _ref2.src : void 0;
     }
+
+    global.selected_country_info = {
+      code: code,
+      name: name,
+      colour: colour
+    };
+
     global.ref.country_name.innerHTML = name;
     global.ref.country_continent.innerHTML = continentName;
     global.ref.country_indicator_pie.innerHTML = "";
@@ -786,6 +914,7 @@
     global.ref.legend_this_country_name.innerHTML = name;
     global.ref.legend_mean_name.innerHTML = "Mean " + (area_type.toLowerCase());
     global.ref.ranking_this_country_label.innerHTML = global.ref.ranking_this_country_label.innerHTML.replace("{0}", global.data.areas.length);
+
     if (area_type === "DEVELOPING") {
       groupNumber = global.minMaxDeveloping.count + " developing";
       meanValue = global.data.statistics.average_developing;
@@ -793,11 +922,13 @@
       groupNumber = global.minMaxEmerging.count + " emerging";
       meanValue = global.data.statistics.average_emerging;
     }
+
     global.ref.ranking_mean_label.innerHTML = global.ref.ranking_mean_label.innerHTML.replace("{0}", groupNumber);
     global.ref.ranking_this_country_value.innerHTML = ranking;
-    global.ref.ranking_this_country_value.style.color = colour.fullColour;
+    global.ref.ranking_this_country_value.style.backgroundColor = colour.fullColour;
     global.ref.ranking_this_country_value.style.borderColor = colour.fullColour;
     global.ref.ranking_mean_value.innerHTML = ranking_type;
+
     wesCountry.charts.chart({
       chartType: "bar",
       container: "#country-indicator-bar",
@@ -836,6 +967,12 @@
       barMargin: 0,
       maxBarWidth: 15,
       backColor: "none",
+      showOverColour: false,
+      events: {
+        onmouseover: function() {
+
+        }
+      },
       getElementColour: function(options, element, index) {
         if (element.area_type === "mean") {
           return global.colours.mean;
@@ -857,15 +994,48 @@
     global.ref.country_this_index.innerHTML = "";
     global.ref.country_this_infrastructure.innerHTML = "";
     global.ref.country_this_access.innerHTML = "";
+
+    // To open chart divs for the chart library to get div dimensions
+    clearChartButtons();
+
+    // Pies
     global.functions.renderTheIndexPieChart(global.ref.country_this_index, code, colour.barColour);
     global.functions.renderInfrastructurePieChart(global.ref.country_this_infrastructure, code, colour.barColour);
     global.functions.renderAccessPieChart(global.ref.country_this_access, code, colour.barColour);
+
+    // Line charts
+    global.ref.country_this_index_line.innerHTML = "";
+    global.ref.country_this_infrastructure_line.innerHTML = "";
+    global.ref.country_this_access_line.innerHTML = "";
+
+    global.functions.renderTheIndexLineChart(global.ref.country_this_index_line, code, colour.barColour);
+    global.functions.renderInfrastructureLineChart(global.ref.country_this_infrastructure_line, code, colour.barColour);
+    global.functions.renderAccessLineChart(global.ref.country_this_access_line, code, colour.barColour);
+
+    // Restore button status
+    runChartButtons();
+
     label = (_ref3 = global.ref.compare_to) != null ? _ref3.getAttribute("data-label") : void 0;
-    return global.ref.compare_to.innerHTML = label != null ? label.replace("{0}", name) : void 0;
+    global.ref.compare_to.innerHTML = label != null ? label.replace("{0}", name) : void 0;
+
+    // Prevent comparison with the country itself
+    var options = global.ref.country_compare_selector.options;
+    var options_length = options.length;
+
+    for (var i = 0; i < options_length; i++) {
+      var option = options[i];
+      var value = option.value;
+
+      if (!value) {
+        continue;
+      }
+
+      option.disabled = value === code;
+    }
   };
 
   loadCountryComparison = function(code) {
-    var area_type, colour, container, continent, continentName, data, max, name, ranking, ranking_type, thisCountryColour, thisCountryData, top, value, _ref, _ref1;
+    var area_type, colour, container, continent, continentName, data, max, name, ranking, ranking_type, thisCountryColour, thisCountryData, top, value, _ref, _ref1, year;
     if (!global.comparisonOpened) {
       global.ref.compare_section.style.display = "block";
       setTimeout(function() {
@@ -875,13 +1045,16 @@
       }, 200);
       global.comparisonOpened = true;
     }
-    thisCountryData = global.data.areaDict[global.selections.country];
-    data = global.data.areaDict[code];
+
+    year = global.selections.year;
+    thisCountryData = global.data.areaDict[global.selections.country][year];
+    data = global.data.areaDict[code][year];
     name = data.short_name;
     value = parseFloat(data.value);
     area_type = data.area_type ? (_ref = data.area_type) != null ? _ref.toUpperCase() : void 0 : "EMERGING";
     colour = area_type === "EMERGING" ? global.colours.emerging : global.colours.developing;
     ranking = data.ranking;
+    ranking = ranking ? ranking : "N/A";
     ranking_type = data.ranking_type;
     continent = data.continent.toUpperCase();
     continentName = global.continents[continent];
@@ -890,18 +1063,47 @@
     getCountryExtraInfo(code, global.ref.population_label_other, global.ref.gni_label_other, global.ref.broadband_label_other, global.ref.poverty_label_other);
     global.ref.ranking_other_country_label.innerHTML = thisCountryData.short_name;
     global.ref.ranking_other_country_value.innerHTML = thisCountryData.ranking;
-    global.ref.ranking_other_country_value.style.color = thisCountryColour.fullColour;
+    global.ref.ranking_other_country_value.style.backgroundColor = thisCountryColour.fullColour;
     global.ref.ranking_other_country_value.style.borderColor = thisCountryColour.fullColour;
-    global.ref.ranking_other_mean_value.style.color = colour.fullColour;
+    global.ref.ranking_other_mean_value.style.backgroundColor = colour.fullColour;
     global.ref.ranking_other_mean_value.style.borderColor = colour.fullColour;
     global.ref.ranking_other_mean_label.innerHTML = name;
     global.ref.ranking_other_mean_value.innerHTML = ranking;
     global.ref.country_other_index.innerHTML = "";
+    global.ref.country_this_index_comparison.innerHTML = "";
     global.ref.country_other_infrastructure.innerHTML = "";
     global.ref.country_other_access.innerHTML = "";
-    global.functions.renderTheIndexPieChart(global.ref.country_other_index, code, colour.barColour);
-    global.functions.renderInfrastructurePieChart(global.ref.country_other_infrastructure, code, colour.barColour);
-    global.functions.renderAccessPieChart(global.ref.country_other_access, code, colour.barColour);
+    global.ref.country_other_infrastructure_comparison.innerHTML = "";
+    global.ref.country_other_access_comparison.innerHTML = "";
+    global.ref.country_this_legend.innerHTML = thisCountryData.short_name;
+    global.ref.country_other_legend.innerHTML = data.short_name;
+
+    // To open chart divs for the chart library to get div dimensions
+    clearChartButtons();
+
+    // Pies
+    global.functions.renderTheIndexPieChartComparison(global.ref.country_other_index, code, colour.barColour, name);
+    global.functions.renderTheIndexPieChartComparison(global.ref.country_this_index_comparison, global.selected_country_info.code, global.selected_country_info.colour.barColour, global.selected_country_info.name); // This country
+    global.functions.renderInfrastructurePieChartComparison(global.ref.country_other_infrastructure, code, colour.barColour, name);
+    global.functions.renderInfrastructurePieChartComparison(global.ref.country_other_infrastructure_comparison, global.selected_country_info.code, global.selected_country_info.colour.barColour, global.selected_country_info.name); // This country
+    global.functions.renderAccessPieChartComparison(global.ref.country_other_access, code, colour.barColour, name);
+    global.functions.renderAccessPieChartComparison(global.ref.country_other_access_comparison, global.selected_country_info.code, global.selected_country_info.colour.barColour, global.selected_country_info.name); // This country
+
+    // Lines
+    global.ref.country_other_index_line.innerHTML = "";
+    global.ref.country_other_infrastructure_line.innerHTML = "";
+    global.ref.country_other_access_line.innerHTML = "";
+
+    var codes = [global.ref.country_selector.value, code];
+    var colours = global.colours.compare_line;
+
+    global.functions.renderTheIndexLineChartComparison(global.ref.country_other_index_line, codes, colours);
+    global.functions.renderInfrastructureLineChartComparison(global.ref.country_other_infrastructure_line, codes, colours);
+    global.functions.renderAccessLineChartComparison(global.ref.country_other_access_line, codes, colours);
+
+    // Restore button status
+    runChartButtons();
+
     top = global.functions.getIndicatorTop(global.selections.indicator);
     max = parseFloat(global.data.statistics.max).toFixed(2);
     if (!top) {
@@ -958,6 +1160,7 @@
       barMargin: 5,
       maxBarWidth: 15,
       backColor: "none",
+      showOverColour: false,
       mean: {
         show: true,
         value: global.data.statistics.average_developing.toFixed(2),
@@ -980,6 +1183,11 @@
         position: "BOTTOM",
         side: "LEFT"
       },
+      events: {
+        onmouseover: function() {
+
+        }
+      },
       getElementColour: function(options, element, index) {
         value = Math.round(element.value);
         if (element.area_type && element.area_type.toUpperCase() === "DEVELOPING") {
@@ -994,9 +1202,16 @@
     var _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
     if ((_ref = global.ref.btn_indicator) != null) {
       _ref.onclick = function(event) {
-        return renderCharts();
+        renderCharts();
       };
     }
+
+    if (global.ref.btn_year != null) {
+      global.ref.btn_year.onclick = function(event) {
+        renderCharts();
+      }
+    }
+
     if ((_ref1 = global.ref.indicator_info_button) != null) {
       _ref1.onclick = function(event) {
         showIndicatorDetail();
@@ -1017,21 +1232,9 @@
         return global.ref.indicatorSelector.refresh();
       };
     }
-    if ((_ref4 = global.ref.close) != null) {
-      _ref4.onclick = function(event) {
-        bodyUnWrap();
-        global.ref.compare_section.style.display = "none";
-        global.ref.country_selector.selectedIndex = 0;
-        global.ref.country_selector.refresh();
-        global.ref.country_compare_selector.selectedIndex = 0;
-        global.ref.country_compare_selector.refresh();
-        global.countryDetailOpened = false;
-        global.comparisonOpened = false;
-        global.countryRequested = null;
-        global.comparisonRequested = null;
-        return false;
-      };
-    }
+
+    global.ref.close.onclick = closeDetail
+
     if ((_ref5 = global.ref.btn_compare) != null) {
       _ref5.onclick = function(event) {
         if (global.selections.compare !== "") {
@@ -1057,6 +1260,21 @@
     }
   };
 
+  function closeDetail() {
+    bodyUnWrap();
+    global.ref.compare_section.style.display = "none";
+    global.ref.country_selector.selectedIndex = 0;
+    global.ref.country_selector.refresh();
+    global.ref.country_compare_selector.selectedIndex = 0;
+    global.ref.country_compare_selector.refresh();
+    global.countryDetailOpened = false;
+    global.comparisonOpened = false;
+    global.countryRequested = null;
+    global.comparisonRequested = null;
+
+    return false;
+  }
+
   this.loadInitialData = function(data) {
     var _ref, _ref1;
     setPageHeight();
@@ -1067,12 +1285,103 @@
     loadAreasInfo(data.areasInfo);
     loadIndexIndicator(data.index);
     loadIndicators(data.obs_index, data.obs_access, data.obs_infrastructure);
+    loadYears(data.years.data);
+
     if ((_ref = global.ref.pies) != null) {
       if ((_ref1 = _ref.style) != null) {
         _ref1.display = "block";
       }
     }
-    return setPageStateful();
+
+    loadChartSelectors();
+
+    setPageStateful();
+
+    setOutClick();
   };
+
+  function loadChartSelectors() {
+    var buttons = document.querySelectorAll("[data-chart-selector]");
+    var buttons_length = buttons.length;
+
+    for (var i = 0; i < buttons_length; i++) {
+      var button = buttons[i];
+
+      var link = button.getAttribute("data-link");
+      link = document.getElementById(link);
+
+      if (link) {
+        link.style.display = button.checked ? 'block' : 'none';
+      }
+
+      button.onchange = function(event) {
+        var checked = this.checked;
+
+        var siblings = this.parentNode.childNodes;
+        var siblings_length = siblings.length;
+
+        for (var i = 0; i < siblings_length; i++) {
+          var sibling = siblings[i];
+          var tagName = sibling.tagName ? sibling.tagName.toLowerCase() : "";
+
+          if (tagName !== 'input' || sibling === this) {
+            continue;
+          }
+
+          var link = sibling.getAttribute("data-link");
+          link = document.getElementById(link);
+
+          if (link) {
+            link.style.display = checked ? 'none' : 'block';
+          }
+        }
+
+        link = this.getAttribute("data-link");
+        link = document.getElementById(link);
+
+        if (link) {
+          link.style.display = checked ? 'block' : 'none';
+        }
+      }
+    }
+  }
+
+  function clearChartButtons() {
+    var buttons = document.querySelectorAll("[data-chart-selector]");
+    var buttons_length = buttons.length;
+
+    for (var i = 0; i < buttons_length; i++) {
+      var button = buttons[i];
+
+      var link = button.getAttribute("data-link");
+      link = document.getElementById(link);
+
+      if (link) {
+        link.style.display = 'block';
+      }
+    }
+  }
+
+  function runChartButtons() {
+    var buttons = document.querySelectorAll("[data-chart-selector]");
+    var buttons_length = buttons.length;
+
+    for (var i = 0; i < buttons_length; i++) {
+      var button = buttons[i];
+
+      if (button.checked) {
+        button.onchange();
+      }
+    }
+  }
+
+  function setOutClick() {
+    // Click out of country detail to close
+    global.ref.country_detail.onclick = function(event) {
+      if (event.target.id === 'country-detail') {
+        closeDetail();
+      }
+    }
+  }
 
 }).call(this);

@@ -1,5 +1,5 @@
 (function() {
-  var getPath, getScreenWidth, internetDisparity, isSmall, renderCharts, serie1, serie2, serie3;
+  var getPath, getScreenWidth, internetDisparity, isSmall, renderCharts, serie1, serie2, serie3, serie4, serie5, serie6, serie7, serie8, serie9, serie10, serie11;
 
   getScreenWidth = function() {
     return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -8,6 +8,8 @@
   isSmall = function() {
     return getScreenWidth() < 780;
   };
+
+  /* 2014 Charts */
 
   serie1 = {
     container: "#affordability-index-chart",
@@ -30,10 +32,11 @@
       title: "Price of mobile broadband, prepaid hand-set based (500MB)",
       "font-size": "8pt",
       pow: 10,
-      margin: isSmall() ? 20 : 10
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
     },
-    sizeByValueMinRadius: isSmall() ? 2 : 0.5,
-    title: "Figure 2. Affordability Index Scores and Broadband Prices",
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
     "foot": "Sources: A4AI, ITU",
     getElementColour: function(options, element, index, subindex) {
       var info;
@@ -457,10 +460,11 @@
       title: "Price of mobile broadband, prepaid hand-set based (500MB)",
       "font-size": "8pt",
       pow: 10,
-      margin: isSmall() ? 20 : 10
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
     },
-    sizeByValueMinRadius: isSmall() ? 2 : 0.5,
-    title: "Figure 4. Broadband Strategies and Prices",
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
     "foot": "Sources: A4AI, ITU",
     getElementColour: function(options, element, index, subindex) {
       var info;
@@ -885,10 +889,11 @@
       title: "Price of mobile broadband, prepaid hand-set based (500MB)",
       "font-size": "8pt",
       pow: 10,
-      margin: isSmall() ? 20 : 10
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
     },
-    sizeByValueMinRadius: isSmall() ? 2 : 0.5,
-    title: "Figure 5. Electrification Rates and Broadband Prices",
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
     "foot": "Sources: ITU, International Energy Agency",
     getElementColour: function(options, element, index, subindex) {
       var info;
@@ -1246,7 +1251,7 @@
   internetDisparity = {
     chartType: "bar",
     container: "#internet-disparity-chart",
-    "title": "Figure 1. Internet Users: Urban vs Rural",
+    "title": "Internet Users: Urban vs Rural",
     "foot": "Source: Research ICT Africa Household Survey Data, 2012",
     serieColours: ["#DE645C", "#619EDE"],
     groupMargin: 20,
@@ -1260,7 +1265,8 @@
     margins: [5, 10, 5, isSmall() ? 10 : 3],
     yAxis: {
       title: "% of Internet users",
-      margin: isSmall() ? 20 : 10
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
     },
     nameUnderItem: {
       show: true
@@ -1308,7 +1314,7 @@
         code: "ETH"
       }, {
         name: "Cameroon",
-        code: "CAM"
+        code: "CMR"
       }, {
         name: "Botswana",
         code: "BWA"
@@ -1329,6 +1335,541 @@
     }
   };
 
+  /* 2015 Charts */
+
+  serie4 = {
+    container: "#adi-score-500mb-prepaid",
+    chartType: "scatter",
+    showFitLine: {
+      show: true,
+      colour: "#31799F",
+      stroke: 3
+    },
+    legend: {
+      show: false
+    },
+    margins: [5, (isSmall() ? 5 : 2), 10, (isSmall() ? 5 : 2)],
+    xAxis: {
+      title: "ADI Score",
+      margin: 10,
+      tickNumber: 11,
+      "font-size": "10pt"
+    },
+    yAxis: {
+      title: "Price of mobile broadband (500MB) AS % of GNI p.c. 2014",
+      "font-size": "10pt",
+      pow: 10,
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
+    },
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
+    "foot": "Source: ADI, Affordability Drivers Index",
+    getElementColour: function(options, element, index, subindex) {
+      var info;
+      info = element.values[subindex] ? element.values[subindex][2] : null;
+      if (info && info.type === "DEVELOPING") {
+        return "#35B4B0";
+      } else {
+        return "#EC962E";
+      }
+    },
+    series: [{"name":"First","values":[[39.127243,3.49,{"iso3":"BGD","name":"Bangladesh","type":"DEVELOPING","adi":39.127243,"gni":3.49}],[35.082836,12.3,{"iso3":"BEN","name":"Benin","type":"DEVELOPING","adi":35.082836,"gni":12.3}],[44.513584,5.17,{"iso3":"BWA","name":"Botswana","type":"EMERGING","adi":44.513584,"gni":5.17}],[59.901978,1.13,{"iso3":"BRA","name":"Brazil","type":"EMERGING","adi":59.901978,"gni":1.13}],[21.823935,24.3,{"iso3":"BFA","name":"Burkina Faso","type":"DEVELOPING","adi":21.823935,"gni":24.3}],[65.323624,3.24,{"iso3":"COL","name":"Colombia","type":"EMERGING","adi":65.323624,"gni":3.24}],[64.60334,1.03,{"iso3":"CRI","name":"Costa Rica","type":"EMERGING","adi":64.60334,"gni":1.03}],[47.228485,6.46,{"iso3":"DOM","name":"Dominican Republic","type":"EMERGING","adi":47.228485,"gni":6.46}],[50.600586,4.43,{"iso3":"ECU","name":"Ecuador","type":"EMERGING","adi":50.600586,"gni":4.43}],[39.550911,2.7,{"iso3":"EGY","name":"Egypt","type":"DEVELOPING","adi":39.550911,"gni":2.7}],[14.876361,16.92,{"iso3":"ETH","name":"Ethiopia","type":"DEVELOPING","adi":14.876361,"gni":16.92}],[45.818161,10.07,{"iso3":"GMB","name":"Gambia","type":"DEVELOPING","adi":45.818161,"gni":10.07}],[42.835323,4.48,{"iso3":"GHA","name":"Ghana","type":"DEVELOPING","adi":42.835323,"gni":4.48}],[13.363722,32.8,{"iso3":"HTI","name":"Haiti","type":"DEVELOPING","adi":13.363722,"gni":32.8}],[40.122658,2.48,{"iso3":"IND","name":"India","type":"DEVELOPING","adi":40.122658,"gni":2.48}],[42.186199,1.13,{"iso3":"IDN","name":"Indonesia","type":"DEVELOPING","adi":42.186199,"gni":1.13}],[50.842541,3.63,{"iso3":"JAM","name":"Jamaica","type":"EMERGING","adi":50.842541,"gni":3.63}],[34.355835,2.05,{"iso3":"JOR","name":"Jordan","type":"EMERGING","adi":34.355835,"gni":2.05}],[36.50333,0.57,{"iso3":"KAZ","name":"Kazakhstan","type":"EMERGING","adi":36.50333,"gni":0.57}],[45.484024,5.89,{"iso3":"KEN","name":"Kenya","type":"DEVELOPING","adi":45.484024,"gni":5.89}],[20.064375,24.4,{"iso3":"MWI","name":"Malawi","type":"DEVELOPING","adi":20.064375,"gni":24.4}],[63.275192,0.99,{"iso3":"MYS","name":"Malaysia","type":"EMERGING","adi":63.275192,"gni":0.99}],[36.53059,17.04,{"iso3":"MLI","name":"Mali","type":"DEVELOPING","adi":36.53059,"gni":17.04}],[55.200588,1.43,{"iso3":"MUS","name":"Mauritius","type":"EMERGING","adi":55.200588,"gni":1.43}],[53.849754,2.72,{"iso3":"MEX","name":"Mexico","type":"EMERGING","adi":53.849754,"gni":2.72}],[55.510883,4.73,{"iso3":"MAR","name":"Morocco","type":"DEVELOPING","adi":55.510883,"gni":4.73}],[28.08884,6.28,{"iso3":"MOZ","name":"Mozambique","type":"DEVELOPING","adi":28.08884,"gni":6.28}],[38.895412,2.62,{"iso3":"NAM","name":"Namibia","type":"EMERGING","adi":38.895412,"gni":2.62}],[29.482986,7.45,{"iso3":"NPL","name":"Nepal","type":"DEVELOPING","adi":29.482986,"gni":7.45}],[52.84967,5.4,{"iso3":"NGA","name":"Nigeria","type":"DEVELOPING","adi":52.84967,"gni":5.4}],[44.108837,1.31,{"iso3":"PAK","name":"Pakistan","type":"DEVELOPING","adi":44.108837,"gni":1.31}],[61.820961,2.02,{"iso3":"PER","name":"Peru","type":"EMERGING","adi":61.820961,"gni":2.02}],[42.244965,2.47,{"iso3":"PHL","name":"Philippines","type":"DEVELOPING","adi":42.244965,"gni":2.47}],[53.131405,14.02,{"iso3":"RWA","name":"Rwanda","type":"DEVELOPING","adi":53.131405,"gni":14.02}],[32.496628,11.57,{"iso3":"SEN","name":"Senegal","type":"DEVELOPING","adi":32.496628,"gni":11.57}],[46.442535,1.48,{"iso3":"ZAF","name":"South Africa","type":"EMERGING","adi":46.442535,"gni":1.48}],[41.928509,10.54,{"iso3":"TZA","name":"Tanzania","type":"DEVELOPING","adi":41.928509,"gni":10.54}],[52.386841,1.38,{"iso3":"THA","name":"Thailand","type":"EMERGING","adi":52.386841,"gni":1.38}],[46.825775,1.68,{"iso3":"TUN","name":"Tunisia","type":"EMERGING","adi":46.825775,"gni":1.68}],[62.34993,0.95,{"iso3":"TUR","name":"Turkey","type":"EMERGING","adi":62.34993,"gni":0.95}],[49.396973,15.4,{"iso3":"UGA","name":"Uganda","type":"DEVELOPING","adi":49.396973,"gni":15.4}],[34.423466,2.61,{"iso3":"VEN","name":"Venezuela","type":"EMERGING","adi":34.423466,"gni":2.61}],[44.365871,7.31,{"iso3":"VNM","name":"Vietnam","type":"DEVELOPING","adi":44.365871,"gni":7.31}],[37.76841,11.89,{"iso3":"ZMB","name":"Zambia","type":"DEVELOPING","adi":37.76841,"gni":11.89}],[25.827023,27.93,{"iso3":"ZWE","name":"Zimbabwe","type":"DEVELOPING","adi":25.827023,"gni":27.93}]]}],
+    events: {
+      "onmouseover": function(info) {
+        var ADI, GNI, iso, name, text;
+        iso = info["data-iso3"];
+        name = info["data-name"];
+        ADI = parseFloat(info["data-adi"]).toFixed(2);
+        GNI = parseFloat(info["data-gni"]).toFixed(2);
+        text = "<div class='chart-tooltip chart-report'><img class='flag' src='" + (getPath()) + "/images/flags/" + iso + ".png' />";
+        text += "<span class='country'>" + name + "</span>";
+        text += "<span class='text'>ADI Score: </span><span class='value'>" + ADI + "</span>";
+        text += "<span class='text'>Price of mobile broadband (500MB) AS % of GNI p.c. 2014: </span><span class='value'>" + GNI + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie5 = {
+    container: "#adi-score-1gb-postpaid",
+    chartType: "scatter",
+    showFitLine: {
+      show: true,
+      colour: "#31799F",
+      stroke: 3
+    },
+    legend: {
+      show: false
+    },
+    margins: [5, (isSmall() ? 5 : 2), 10, (isSmall() ? 5 : 2)],
+    xAxis: {
+      title: "ADI Score",
+      margin: 10,
+      tickNumber: 11,
+      "font-size": "10pt"
+    },
+    yAxis: {
+      title: "Price of mobile broadband (1GB) AS % of GNI p.c. 2014",
+      "font-size": "10pt",
+      pow: 10,
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
+    },
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
+    "foot": "Source: ADI, Affordability Drivers Index",
+    getElementColour: function(options, element, index, subindex) {
+      var info;
+      info = element.values[subindex] ? element.values[subindex][2] : null;
+      if (info && info.type === "DEVELOPING") {
+        return "#35B4B0";
+      } else {
+        return "#EC962E";
+      }
+    },
+    series: [{"name":"First","values":[[39.127243,5.28,{"iso3":"BGD","name":"Bangladesh","type":"DEVELOPING","adi":39.127243,"gni":5.28}],[35.082836,21.53,{"iso3":"BEN","name":"Benin","type":"DEVELOPING","adi":35.082836,"gni":21.53}],[44.513584,11.57,{"iso3":"BWA","name":"Botswana","type":"EMERGING","adi":44.513584,"gni":11.57}],[59.901978,2.31,{"iso3":"BRA","name":"Brazil","type":"EMERGING","adi":59.901978,"gni":2.31}],[21.823935,16.2,{"iso3":"BFA","name":"Burkina Faso","type":"DEVELOPING","adi":21.823935,"gni":16.2}],[25.969967,11.3,{"iso3":"CMR","name":"Cameroon","type":"DEVELOPING","adi":25.969967,"gni":11.3}],[44.73996,1.49,{"iso3":"CHN","name":"China","type":"EMERGING","adi":44.73996,"gni":1.49}],[65.323624,2.21,{"iso3":"COL","name":"Colombia","type":"EMERGING","adi":65.323624,"gni":2.21}],[64.60334,1.61,{"iso3":"CRI","name":"Costa Rica","type":"EMERGING","adi":64.60334,"gni":1.61}],[47.228485,3.7,{"iso3":"DOM","name":"Dominican Republic","type":"EMERGING","adi":47.228485,"gni":3.7}],[50.600586,4.44,{"iso3":"ECU","name":"Ecuador","type":"EMERGING","adi":50.600586,"gni":4.44}],[39.550911,1.55,{"iso3":"EGY","name":"Egypt","type":"DEVELOPING","adi":39.550911,"gni":1.55}],[14.876361,39.29,{"iso3":"ETH","name":"Ethiopia","type":"DEVELOPING","adi":14.876361,"gni":39.29}],[45.818161,143.92,{"iso3":"GMB","name":"Gambia","type":"DEVELOPING","adi":45.818161,"gni":143.92}],[42.835323,4.48,{"iso3":"GHA","name":"Ghana","type":"DEVELOPING","adi":42.835323,"gni":4.48}],[13.363722,32.8,{"iso3":"HTI","name":"Haiti","type":"DEVELOPING","adi":13.363722,"gni":32.8}],[40.122658,3.13,{"iso3":"IND","name":"India","type":"DEVELOPING","adi":40.122658,"gni":3.13}],[42.186199,1.56,{"iso3":"IDN","name":"Indonesia","type":"DEVELOPING","adi":42.186199,"gni":1.56}],[50.842541,5.19,{"iso3":"JAM","name":"Jamaica","type":"EMERGING","adi":50.842541,"gni":5.19}],[34.355835,3.42,{"iso3":"JOR","name":"Jordan","type":"EMERGING","adi":34.355835,"gni":3.42}],[36.50333,0.57,{"iso3":"KAZ","name":"Kazakhstan","type":"EMERGING","adi":36.50333,"gni":0.57}],[45.484024,11.78,{"iso3":"KEN","name":"Kenya","type":"DEVELOPING","adi":45.484024,"gni":11.78}],[20.064375,41.88,{"iso3":"MWI","name":"Malawi","type":"DEVELOPING","adi":20.064375,"gni":41.88}],[63.275192,1.69,{"iso3":"MYS","name":"Malaysia","type":"EMERGING","adi":63.275192,"gni":1.69}],[36.53059,27.2,{"iso3":"MLI","name":"Mali","type":"DEVELOPING","adi":36.53059,"gni":27.2}],[55.200588,0.82,{"iso3":"MUS","name":"Mauritius","type":"EMERGING","adi":55.200588,"gni":0.82}],[53.849754,2.26,{"iso3":"MEX","name":"Mexico","type":"EMERGING","adi":53.849754,"gni":2.26}],[55.510883,4.68,{"iso3":"MAR","name":"Morocco","type":"DEVELOPING","adi":55.510883,"gni":4.68}],[28.08884,13.13,{"iso3":"MOZ","name":"Mozambique","type":"DEVELOPING","adi":28.08884,"gni":13.13}],[38.895412,2.81,{"iso3":"NAM","name":"Namibia","type":"EMERGING","adi":38.895412,"gni":2.81}],[29.482986,13.05,{"iso3":"NPL","name":"Nepal","type":"DEVELOPING","adi":29.482986,"gni":13.05}],[52.84967,9.46,{"iso3":"NGA","name":"Nigeria","type":"DEVELOPING","adi":52.84967,"gni":9.46}],[44.108837,10.47,{"iso3":"PAK","name":"Pakistan","type":"DEVELOPING","adi":44.108837,"gni":10.47}],[61.820961,3.04,{"iso3":"PER","name":"Peru","type":"EMERGING","adi":61.820961,"gni":3.04}],[42.244965,8.27,{"iso3":"PHL","name":"Philippines","type":"DEVELOPING","adi":42.244965,"gni":8.27}],[53.131405,28.03,{"iso3":"RWA","name":"Rwanda","type":"DEVELOPING","adi":53.131405,"gni":28.03}],[13.698072,41.23,{"iso3":"SLE","name":"Sierra Leone","type":"DEVELOPING","adi":13.698072,"gni":41.23}],[46.442535,1.18,{"iso3":"ZAF","name":"South Africa","type":"EMERGING","adi":46.442535,"gni":1.18}],[41.928509,7.59,{"iso3":"TZA","name":"Tanzania","type":"DEVELOPING","adi":41.928509,"gni":7.59}],[52.386841,2.49,{"iso3":"THA","name":"Thailand","type":"EMERGING","adi":52.386841,"gni":2.49}],[46.825775,2.53,{"iso3":"TUN","name":"Tunisia","type":"EMERGING","adi":46.825775,"gni":2.53}],[62.34993,1,{"iso3":"TUR","name":"Turkey","type":"EMERGING","adi":62.34993,"gni":1}],[49.396973,28.88,{"iso3":"UGA","name":"Uganda","type":"DEVELOPING","adi":49.396973,"gni":28.88}],[34.423466,3.7,{"iso3":"VEN","name":"Venezuela","type":"EMERGING","adi":34.423466,"gni":3.7}],[44.365871,3.92,{"iso3":"VNM","name":"Vietnam","type":"DEVELOPING","adi":44.365871,"gni":3.92}],[37.76841,14.16,{"iso3":"ZMB","name":"Zambia","type":"DEVELOPING","adi":37.76841,"gni":14.16}],[25.827023,62.85,{"iso3":"ZWE","name":"Zimbabwe","type":"DEVELOPING","adi":25.827023,"gni":62.85}]]}],
+    events: {
+      "onmouseover": function(info) {
+        var ADI, GNI, iso, name, text;
+        iso = info["data-iso3"];
+        name = info["data-name"];
+        ADI = parseFloat(info["data-adi"]).toFixed(2);
+        GNI = parseFloat(info["data-gni"]).toFixed(2);
+        text = "<div class='chart-tooltip chart-report'><img class='flag' src='" + (getPath()) + "/images/flags/" + iso + ".png' />";
+        text += "<span class='country'>" + name + "</span>";
+        text += "<span class='text'>ADI Score: </span><span class='value'>" + ADI + "</span>";
+        text += "<span class='text'>Price of mobile broadband (500MB) AS % of GNI p.c. 2014: </span><span class='value'>" + GNI + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie6 = {
+    chartType: "bar",
+    container: "#price-500mb-gni",
+    "title": "",
+    "foot": "",
+    serieColours: ["#619EDE", "#DE645C", "#F5A52D"],
+    groupMargin: 20,
+    xAxis: {
+      values: ["Africa", "CIS", "Asia and the Pacific", "Americas", "Arab States", "Europe"],
+      title: "Region",
+      "font-size": "10pt",
+      rotation: isSmall() ? -90 : 0,
+      margin: isSmall() ? 15 : 10
+    },
+    margins: [5, 10, 6, isSmall() ? 10 : 3],
+    yAxis: {
+      title: "Price of 500MB as a % of GNI per capita",
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
+    },
+    nameUnderItem: {
+      show: true,
+      "font-size": "7pt"
+    },
+    valueOnItem: {
+      show: false
+    },
+    legend: {
+      itemSize: isSmall() ? 2 : 0.5,
+      margin: isSmall() ? 4 : 2
+    },
+    series: [
+      {
+        name: "2012",
+        values: [38.8, 5.7, 5.9, 5.9, 5.7, 1.2]
+      },
+      {
+        name: "2013",
+        values: [15.3, 3.8, 5, 5.4, 4.8, 1.2]
+      },
+      {
+        name: "2014",
+        values: [15.2, 3.7, 4.28, 4.39, 5.22, 0.82]
+      }
+    ],
+    events: {
+      "onmouseover": function(info) {
+        var data, iso, name, pos, text;
+        pos = info["serie_pos"];
+        text = "<div class='chart-tooltip chart-report'>";
+        text += "<span class='area'>" + info.pos + "</span>";
+        text += "<span class='text'>" + info.serie + "</span>";
+        text += "<span class='text'>Price of 1GB as a % of GNI per capita:</span>";
+        text += "<span class='value'>" + info.value + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie7 = {
+    chartType: "bar",
+    container: "#price-1gb-gni",
+    "title": "",
+    "foot": "",
+    serieColours: ["#619EDE", "#DE645C", "#F5A52D"],
+    groupMargin: 20,
+    xAxis: {
+      values: ["Africa", "CIS", "Asia and the Pacific", "Americas", "Arab States", "Europe"],
+      title: "Region",
+      "font-size": "10pt",
+      rotation: isSmall() ? -90 : 0,
+      margin: isSmall() ? 15 : 10
+    },
+    margins: [5, 10, 6, isSmall() ? 10 : 3],
+    yAxis: {
+      title: "Price of 1GB as a % of GNI per capita",
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
+    },
+    nameUnderItem: {
+      show: true,
+      "font-size": "7pt"
+    },
+    valueOnItem: {
+      show: false
+    },
+    legend: {
+      itemSize: isSmall() ? 2 : 0.5,
+      margin: isSmall() ? 4 : 2
+    },
+    series: [
+      {
+        name: "2012",
+        values: [54.6, 7.4, 10.6, 8, 2.5, 1.2]
+      },
+      {
+        name: "2013",
+        values: [23.3, 4.4, 9.3, 5.7, 5.9, 1.1]
+      },
+      {
+        name: "2014",
+        values: [30.33, 4.83, 7.53, 4.88, 7.93, 0.9]
+      }
+    ],
+    events: {
+      "onmouseover": function(info) {
+        var data, iso, name, pos, text;
+        pos = info["serie_pos"];
+        text = "<div class='chart-tooltip chart-report'>";
+        text += "<span class='area'>" + info.pos + "</span>";
+        text += "<span class='text'>" + info.serie + "</span>";
+        text += "<span class='text'>Price of 1GB as a % of GNI per capita:</span>";
+        text += "<span class='value'>" + info.value + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie8 = {
+    chartType: "line",
+    container: "#average-clustered-policy-scores",
+    "title": "",
+    "foot": "",
+    serieColours: ["#619EDE", "#B93734", "#F5A52D", "#99B954", "#DF01D7", "#666666"],
+    groupMargin: 20,
+    xAxis: {
+      values: ["Competition policy", "Broadband policy", "Universal access", "Infrastructure sharing", "Spectrum policy"],
+      title: "Region",
+      "font-size": "10pt",
+      rotation: isSmall() ? -90 : 0,
+      margin: isSmall() ? 15 : 10
+    },
+    margins: [5, 10, 6, isSmall() ? 10 : 3],
+    yAxis: {
+      title: "Policy Scores",
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
+    },
+    nameUnderItem: {
+      show: true,
+      "font-size": "7pt"
+    },
+    valueOnItem: {
+      show: false
+    },
+    legend: {
+      itemSize: isSmall() ? 2 : 0.5,
+      margin: isSmall() ? 4 : 2
+    },
+    stroke: {
+      width: 3
+    },
+    series: [
+      {
+        name: "Colombia",
+        values: [5.916666667, 7.666666667, 7.666666667,	6.166666667, 7.833333333]
+      },
+      {
+        name: "Philippines",
+        values: [5, 4.5, 2,	2.666666667, 4]
+      },
+      {
+        name: "Benin",
+        values: [4.75, 5, 3.833333333, 4.5, 4.5]
+      },
+      {
+        name: "Jamaica",
+        values: [4.666666667,	4.75, 5.666666667, 3.333333333,	6.5]
+      },
+      {
+        name: "Thailand",
+        values: [3.916666667,	4.833333333, 6.111111111,	4.333333333, 5.666666667]
+      },
+      {
+        name: "Malawi",
+        values: [3.75, 0.75, 1.833333333, 2, 1.75]
+      }
+    ],
+    info: {
+      "Colombia": "COL",
+      "Philippines": "PHL",
+      "Benin": "BEN",
+      "Jamaica": "JAM",
+      "Thailand": "THA",
+      "Malawi": "MWI"
+    },
+    events: {
+      "onmouseover": function(info) {
+        var data, iso, name, pos, text;
+        pos = info["serie_pos"];
+        iso = serie8.info[info.serie]
+        text = "<div class='chart-tooltip chart-report'><img class='flag' src='" + (getPath()) + "/images/flags/" + iso + ".png' />";
+        text += "<span class='country'>" + info.serie + "</span>";
+        text += "<span class='text'>" + info.pos + ":</span></div>";
+        text += "<span class='value'>" + info.value + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie9 = {
+    container: "#gni-capita-500mb-percentage-afford",
+    chartType: "scatter",
+    showFitLine: {
+      show: false,
+      colour: "#31799F",
+      stroke: 3
+    },
+    legend: {
+      show: false
+    },
+    margins: [5, (isSmall() ? 5 : 2), 10, (isSmall() ? 5 : 2)],
+    xAxis: {
+      title: "Total % of population that can afford 500MB at 5% of GNI p.c.",
+      margin: 10,
+      tickNumber: 11,
+      "font-size": "10pt"
+    },
+    yAxis: {
+      title: "Price of 500MB as a % of GNI p.c.",
+      "font-size": "10pt",
+      pow: 10,
+      margin: isSmall() ? 20 : 10,
+      tickNumber: 20,
+      "font-colour": "#777"
+    },
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
+    "foot": "",
+    getElementColour: function(options, element, index, subindex) {
+      var info;
+      info = element.values[subindex] ? element.values[subindex][2] : null;
+      if (info && info.type === "DEVELOPING") {
+        return "#35B4B0";
+      } else {
+        return "#EC962E";
+      }
+    },
+    series: [{"name":"First","values":[[100,1.03,{"iso3":"CRI","name":"Costa Rica","type":"EMERGING","price":100,"gni":1.03}],[100,1.13,{"iso3":"IDN","name":"Indonesia","type":"DEVELOPING","price":100,"gni":1.13}],[100,2.05,{"iso3":"JOR","name":"Jordan","type":"EMERGING","price":100,"gni":2.05}],[100,0.57,{"iso3":"KAZ","name":"Kazakhstan","type":"EMERGING","price":100,"gni":0.57}],[100,0.99,{"iso3":"MYS","name":"Malaysia","type":"EMERGING","price":100,"gni":0.99}],[100,1.43,{"iso3":"MUS","name":"Mauritius","type":"EMERGING","price":100,"gni":1.43}],[100,1.31,{"iso3":"PAK","name":"Pakistan","type":"DEVELOPING","price":100,"gni":1.31}],[100,1.38,{"iso3":"THA","name":"Thailand","type":"EMERGING","price":100,"gni":1.38}],[100,0.95,{"iso3":"TUR","name":"Turkey","type":"EMERGING","price":100,"gni":0.95}],[80,3.49,{"iso3":"BGD","name":"Bangladesh","type":"DEVELOPING","price":80,"gni":3.49}],[80,1.13,{"iso3":"BRA","name":"Brazil","type":"EMERGING","price":80,"gni":1.13}],[80,2.48,{"iso3":"IND","name":"India","type":"DEVELOPING","price":80,"gni":2.48}],[80,2.02,{"iso3":"PER","name":"Peru","type":"EMERGING","price":80,"gni":2.02}],[80,2.47,{"iso3":"PHL","name":"Philippines","type":"DEVELOPING","price":80,"gni":2.47}],[60,2.72,{"iso3":"MEX","name":"Mexico","type":"EMERGING","price":60,"gni":2.72}],[60,1.48,{"iso3":"ZAF","name":"South Africa","type":"EMERGING","price":60,"gni":1.48}],[40,3.24,{"iso3":"COL","name":"Colombia","type":"EMERGING","price":40,"gni":3.24}],[40,4.43,{"iso3":"ECU","name":"Ecuador","type":"EMERGING","price":40,"gni":4.43}],[40,2.62,{"iso3":"NAM","name":"Namibia","type":"EMERGING","price":40,"gni":2.62}],[40,5.4,{"iso3":"NGA","name":"Nigeria","type":"DEVELOPING","price":40,"gni":5.4}],[20,12.3,{"iso3":"BEN","name":"Benin","type":"DEVELOPING","price":20,"gni":12.3}],[20,5.17,{"iso3":"BWA","name":"Botswana","type":"EMERGING","price":20,"gni":5.17}],[20,6.46,{"iso3":"DOM","name":"Dominican Republic","type":"EMERGING","price":20,"gni":6.46}],[20,7.45,{"iso3":"NPL","name":"Nepal","type":"DEVELOPING","price":20,"gni":7.45}],[20,14.02,{"iso3":"RWA","name":"Rwanda","type":"DEVELOPING","price":20,"gni":14.02}],[20,11.57,{"iso3":"SEN","name":"Senegal","type":"DEVELOPING","price":20,"gni":11.57}],[20,10.54,{"iso3":"TZA","name":"Tanzania","type":"DEVELOPING","price":20,"gni":10.54}],[20,7.31,{"iso3":"VNM","name":"Vietnam","type":"DEVELOPING","price":20,"gni":7.31}],[20,11.89,{"iso3":"ZMB","name":"Zambia","type":"DEVELOPING","price":20,"gni":11.89}],[0,24.3,{"iso3":"BFA","name":"Burkina Faso","type":"DEVELOPING","price":0,"gni":24.3}],[0,16.92,{"iso3":"ETH","name":"Ethiopia","type":"DEVELOPING","price":0,"gni":16.92}],[0,32.8,{"iso3":"HTI","name":"Haiti","type":"DEVELOPING","price":0,"gni":32.8}],[0,24.4,{"iso3":"MWI","name":"Malawi","type":"DEVELOPING","price":0,"gni":24.4}],[0,17.04,{"iso3":"MLI","name":"Mali","type":"DEVELOPING","price":0,"gni":17.04}],[0,15.4,{"iso3":"UGA","name":"Uganda","type":"DEVELOPING","price":0,"gni":15.4}]]}],
+    events: {
+      "onmouseover": function(info) {
+        var ADI, GNI, iso, name, text;
+        iso = info["data-iso3"];
+        name = info["data-name"];
+        PRICE = parseFloat(info["data-price"]).toFixed(2);
+        GNI = parseFloat(info["data-gni"]).toFixed(2);
+        text = "<div class='chart-tooltip chart-report'><img class='flag' src='" + (getPath()) + "/images/flags/" + iso + ".png' />";
+        text += "<span class='country'>" + name + "</span>";
+        text += "<span class='text'>Price of 500MBas a % of GNI p.c.: </span><span class='value'>" + GNI + "</span>";
+        text += "<span class='text'>Total % of population that can afford 500MB at 5% of GNI p.c.: </span><span class='value'>" + PRICE + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie10 = {
+    container: "#gni-capita-1gb-percentage-afford",
+    chartType: "scatter",
+    showFitLine: {
+      show: false,
+      colour: "#31799F",
+      stroke: 3
+    },
+    legend: {
+      show: false
+    },
+    margins: [5, (isSmall() ? 5 : 2), 10, (isSmall() ? 5 : 2)],
+    xAxis: {
+      title: "Total % of population that can afford 1GB at 5% of GNI p.c.",
+      margin: 10,
+      tickNumber: 11,
+      "font-size": "10pt"
+    },
+    yAxis: {
+      title: "Price of 500MB as a % of GNI p.c.",
+      "font-size": "10pt",
+      pow: 10,
+      margin: isSmall() ? 20 : 10,
+      tickNumber: 25,
+      "font-colour": "#777"
+    },
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
+    "foot": "",
+    getElementColour: function(options, element, index, subindex) {
+      var info;
+      info = element.values[subindex] ? element.values[subindex][2] : null;
+      if (info && info.type === "DEVELOPING") {
+        return "#35B4B0";
+      } else {
+        return "#EC962E";
+      }
+    },
+    series: [{"name":"First","values":[[100,1.56,{"iso3":"IDN","name":"Indonesia","type":"DEVELOPING","price":100,"gni":1.56}],[100,0.57,{"iso3":"KAZ","name":"Kazakhstan","type":"EMERGING","price":100,"gni":0.57}],[100,0.82,{"iso3":"MUS","name":"Mauritius","type":"EMERGING","price":100,"gni":0.82}],[100,1,{"iso3":"TUR","name":"Turkey","type":"EMERGING","price":100,"gni":1}],[80,1.49,{"iso3":"CHN","name":"China","type":"EMERGING","price":80,"gni":1.49}],[80,1.61,{"iso3":"CRI","name":"Costa Rica","type":"EMERGING","price":80,"gni":1.61}],[80,3.42,{"iso3":"JOR","name":"Jordan","type":"EMERGING","price":80,"gni":3.42}],[80,1.69,{"iso3":"MYS","name":"Malaysia","type":"EMERGING","price":80,"gni":1.69}],[80,2.49,{"iso3":"THA","name":"Thailand","type":"EMERGING","price":80,"gni":2.49}],[80,2.26,{"iso3":"MEX","name":"Mexico","type":"EMERGING","price":80,"gni":2.26}],[60,2.31,{"iso3":"BRA","name":"Brazil","type":"EMERGING","price":60,"gni":2.31}],[60,3.13,{"iso3":"IND","name":"India","type":"DEVELOPING","price":60,"gni":3.13}],[60,3.04,{"iso3":"PER","name":"Peru","type":"EMERGING","price":60,"gni":3.04}],[60,1.18,{"iso3":"ZAF","name":"South Africa","type":"EMERGING","price":60,"gni":1.18}],[60,2.21,{"iso3":"COL","name":"Colombia","type":"EMERGING","price":60,"gni":2.21}],[60,3.92,{"iso3":"VNM","name":"Vietnam","type":"DEVELOPING","price":60,"gni":3.92}],[40,5.28,{"iso3":"BGD","name":"Bangladesh","type":"DEVELOPING","price":40,"gni":5.28}],[40,4.44,{"iso3":"ECU","name":"Ecuador","type":"EMERGING","price":40,"gni":4.44}],[40,2.81,{"iso3":"NAM","name":"Namibia","type":"EMERGING","price":40,"gni":2.81}],[40,3.7,{"iso3":"DOM","name":"Dominican Republic","type":"EMERGING","price":40,"gni":3.7}],[20,10.47,{"iso3":"PAK","name":"Pakistan","type":"DEVELOPING","price":20,"gni":10.47}],[20,8.27,{"iso3":"PHL","name":"Philippines","type":"DEVELOPING","price":20,"gni":8.27}],[20,9.46,{"iso3":"NGA","name":"Nigeria","type":"DEVELOPING","price":20,"gni":9.46}],[20,11.57,{"iso3":"BWA","name":"Botswana","type":"EMERGING","price":20,"gni":11.57}],[20,7.59,{"iso3":"TZA","name":"Tanzania","type":"DEVELOPING","price":20,"gni":7.59}],[0,21.53,{"iso3":"BEN","name":"Benin","type":"DEVELOPING","price":0,"gni":21.53}],[0,13.05,{"iso3":"NPL","name":"Nepal","type":"DEVELOPING","price":0,"gni":13.05}],[0,28.03,{"iso3":"RWA","name":"Rwanda","type":"DEVELOPING","price":0,"gni":28.03}],[0,14.16,{"iso3":"ZMB","name":"Zambia","type":"DEVELOPING","price":0,"gni":14.16}],[0,16.2,{"iso3":"BFA","name":"Burkina Faso","type":"DEVELOPING","price":0,"gni":16.2}],[0,39.29,{"iso3":"ETH","name":"Ethiopia","type":"DEVELOPING","price":0,"gni":39.29}],[0,32.8,{"iso3":"HTI","name":"Haiti","type":"DEVELOPING","price":0,"gni":32.8}],[0,41.88,{"iso3":"MWI","name":"Malawi","type":"DEVELOPING","price":0,"gni":41.88}],[0,27.2,{"iso3":"MLI","name":"Mali","type":"DEVELOPING","price":0,"gni":27.2}],[0,41.23,{"iso3":"SLE","name":"Sierra Leone","type":"DEVELOPING","price":0,"gni":41.23}],[0,28.88,{"iso3":"UGA","name":"Uganda","type":"DEVELOPING","price":0,"gni":28.88}]]}],
+    events: {
+      "onmouseover": function(info) {
+        var ADI, GNI, iso, name, text;
+        iso = info["data-iso3"];
+        name = info["data-name"];
+        PRICE = parseFloat(info["data-price"]).toFixed(2);
+        GNI = parseFloat(info["data-gni"]).toFixed(2);
+        text = "<div class='chart-tooltip chart-report'><img class='flag' src='" + (getPath()) + "/images/flags/" + iso + ".png' />";
+        text += "<span class='country'>" + name + "</span>";
+        text += "<span class='text'>Price of 500MBas a % of GNI p.c.: </span><span class='value'>" + GNI + "</span>";
+        text += "<span class='text'>Total % of population that can afford 500MB at 5% of GNI p.c.: </span><span class='value'>" + PRICE + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
+  serie11 = {
+    container: "#mobile-broadband-prices-women",
+    chartType: "scatter",
+    showFitLine: {
+      show: true,
+      colour: "#31799F",
+      stroke: 3
+    },
+    legend: {
+      show: false
+    },
+    margins: [5, (isSmall() ? 5 : 2), 10, (isSmall() ? 5 : 2)],
+    xAxis: {
+      title: "Level of Internet access among women",
+      margin: 10,
+      tickNumber: 11,
+      "font-size": "10pt"
+    },
+    yAxis: {
+      title: "Price of a mobile broadband (500MB) plan as % of GNI per capita",
+      "font-size": "10pt",
+      pow: 10,
+      margin: isSmall() ? 20 : 10,
+      "font-colour": "#777"
+    },
+    sizeByValueMinRadius: isSmall() ? 2 : 1,
+    title: "",
+    "foot": "",
+    getElementColour: function(options, element, index, subindex) {
+      var info;
+      info = element.values[subindex] ? element.values[subindex][2] : null;
+      if (info && info.type === "DEVELOPING") {
+        return "#35B4B0";
+      } else {
+        return "#EC962E";
+      }
+    },
+    series: [
+      {
+        "name":"First",
+        "values":[
+          [20, 5.89, {
+            "iso3": "KEN",
+            "name": "Kenya",
+            "type": "DEVELOPING",
+            "level": 20,
+            "price": 5.89
+          }],
+          [21, 15.40, {
+            "iso3": "UGA",
+            "name": "Uganda",
+            "type": "DEVELOPING",
+            "level": 21,
+            "price": 15.40
+          }],
+          [31, 1.13, {
+            "iso3": "IDN",
+            "name": "Indonesia",
+            "type": "DEVELOPING",
+            "level": 31,
+            "price": 1.13
+          }],
+          [33, 6.28, {
+            "iso3": "MOZ",
+            "name": "Mozambique",
+            "type": "DEVELOPING",
+            "level": 33,
+            "price": 6.28
+          }],
+          [36, 5.40, {
+            "iso3": "NGA",
+            "name": "Nigeria",
+            "type": "DEVELOPING",
+            "level": 36,
+            "price": 5.40
+          }],
+          [46, 2.47, {
+            "iso3": "PHL",
+            "name": "Philippines",
+            "type": "DEVELOPING",
+            "level": 46,
+            "price": 2.47
+          }],
+          [47, 2.48, {
+            "iso3": "IND",
+            "name": "India",
+            "type": "DEVELOPING",
+            "level": 47,
+            "price": 2.48
+          }],
+          [71, 3.24, {
+            "iso3": "COL",
+            "name": "Colombia",
+            "type": "EMERGING",
+            "level": 71,
+            "price": 3.24
+          }]
+        ]
+      }],
+    events: {
+      "onmouseover": function(info) {
+        var ADI, GNI, iso, name, text;
+        iso = info["data-iso3"];
+        name = info["data-name"];
+        PRICE = parseFloat(info["data-price"]).toFixed(2);
+        LEVEL = parseFloat(info["data-level"]).toFixed(2);
+        text = "<div class='chart-tooltip chart-report'><img class='flag' src='" + (getPath()) + "/images/flags/" + iso + ".png' />";
+        text += "<span class='country'>" + name + "</span>";
+        text += "<span class='text'>Level of Internet access among women: </span><span class='value'>" + LEVEL + "</span>";
+        text += "<span class='text'>Total % of population that can afford 500MB at 5% of GNI p.c.: </span><span class='value'>" + PRICE + "</span></div>";
+        return wesCountry.charts.showTooltip(text, info.event);
+      }
+    }
+  };
+
   getPath = function() {
     return document.getElementById("path").value;
   };
@@ -1344,11 +1885,29 @@
       container = containers[_i];
       container.innerHTML = "";
     }
-    wesCountry.charts.chart(internetDisparity);
-    wesCountry.charts.chart(serie1);
-    wesCountry.charts.chart(serie2);
-    return wesCountry.charts.chart(serie3);
+    renderChart(internetDisparity);
+    renderChart(serie1);
+    renderChart(serie2);
+    renderChart(serie3);
+    renderChart(serie4);
+    renderChart(serie5);
+    renderChart(serie6);
+    renderChart(serie7);
+    renderChart(serie8);
+    renderChart(serie9);
+    renderChart(serie10);
+    renderChart(serie11);
   };
+
+  function renderChart(serie) {
+  	var container = document.querySelector(serie.container);
+
+  	if (!container) {
+  		return;
+  	}
+
+  	wesCountry.charts.chart(serie);
+  }
 
   renderCharts();
 

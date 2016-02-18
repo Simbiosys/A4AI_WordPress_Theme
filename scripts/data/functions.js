@@ -40,11 +40,14 @@
       close: document.getElementById("close"),
       country_detail: document.getElementById("country-detail"),
       country_this_index: document.getElementById("country-this-index"),
+      country_this_index_comparison: document.getElementById("country-this-index-comparison"),
       country_this_infrastructure: document.getElementById("country-this-infrastructure"),
       country_this_access: document.getElementById("country-this-access"),
       country_other_index: document.getElementById("country-other-index"),
       country_other_infrastructure: document.getElementById("country-other-infrastructure"),
+      country_other_infrastructure_comparison: document.getElementById("country-other-infrastructure-comparison"),
       country_other_access: document.getElementById("country-other-access"),
+      country_other_access_comparison: document.getElementById("country-other-access-comparison"),
       compare_to: document.getElementById("compare-to"),
       country_selector: document.getElementById("country-selector"),
       country_compare_selector: document.getElementById("country-compare-selector"),
@@ -73,7 +76,18 @@
       close_indicator: document.getElementById("close-indicator"),
       btn_country: document.getElementById("btn-country"),
       pies: document.getElementById("pies"),
-      body_wrapper: null
+      body_wrapper: null,
+      country_this_index_line: document.getElementById("country-this-index-line"),
+      country_this_infrastructure_line: document.getElementById("country-this-infrastructure-line"),
+      country_this_access_line: document.getElementById("country-this-access-line"),
+      country_other_index_line: document.getElementById("country-other-index-line"),
+      country_other_infrastructure_line: document.getElementById("country-other-infrastructure-line"),
+      country_other_access_line: document.getElementById("country-other-access-line"),
+      country_this_legend: document.getElementById("country-this-legend"),
+      country_other_legend: document.getElementById("country-other-legend"),
+      country_detail_wrapper: document.getElementById("country-detail-wrapper"),
+      year_selector: document.getElementById("year-selector"),
+      btn_year: document.getElementById("btn-year")
     };
   };
 
@@ -102,7 +116,9 @@
     developing: "#35B4B0",
     emerging_light: "#F3DDBF",
     developing_light: "#B4EBEA",
-    mean: "#AAAAAA"
+    mean: "#AAAAAA",
+    compare_back: "#D5D1BF",
+    compare_line: ['#74C100', '#3B90AF']
   };
 
   global.minMaxDeveloping = null;
@@ -122,7 +138,7 @@
     var check;
     check = false;
     (function(a, b) {
-      if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
+      if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
         check = true;
       }
     })(navigator.userAgent || navigator.vendor || window.opera);
@@ -187,10 +203,18 @@
   };
 
   global.functions.getFlag = function(code) {
+    var flagContainer = document.getElementById("flag-container");
+
+    if (!flagContainer) {
+      flagContainer = document.createElement('div');
+      flagContainer.className = 'flag-container';
+      document.body.appendChild(flagContainer);
+    }
+
     var content, img, style;
     img = document.createElement("img");
     img.className = "flag flag-" + code;
-    document.body.appendChild(img);
+    flagContainer.appendChild(img);
     style = window.getComputedStyle(img);
     content = style.getPropertyValue('content');
     if (content) {
@@ -258,7 +282,7 @@
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
   };
 
-  global.functions.renderPieChart = function(container, value, colour, showLabel, code, maxValue) {
+  global.functions.renderPieChart = function(container, value, colour, showLabel, code, maxValue, remainderColour) {
     var c, div, label, parent;
     div = document.createElement("div");
     div.id = "d" + wesCountry.guid();
@@ -296,11 +320,19 @@
           values: [""],
           margin: 0
         },
-        serieColours: ["#ddd", colour],
+        serieColours: [remainderColour ? remainderColour : "#ddd", colour],
         margins: [0, 0, 0, 0],
         showOverColour: false
       });
+
+      if (div.parentNode) {
+        div.parentNode.setAttribute("data-empty", "false");
+      }
     } else {
+      if (div.parentNode) {
+        div.parentNode.setAttribute("data-empty", "true");
+      }
+
       div.style.display = "none";
     }
     if (showLabel) {
@@ -318,33 +350,153 @@
     return div;
   };
 
+  global.functions.renderLineChart = function(container, values, colours, showLabel, code, maxValue, noMargin) {
+    var c, div, label, parent;
+    div = document.createElement("div");
+    div.id = "d" + wesCountry.guid();
+    div.className = "line-wrapper";
+    c = document.querySelector(container);
+
+    if (c != null) {
+      c.innerHTML = "";
+    }
+
+    if (c != null) {
+      c.appendChild(div);
+    }
+
+    if (!maxValue) {
+      maxValue = global.functions.getIndicatorTop(code);
+    }
+
+    var series = [];
+    var years = [];
+    var values_length = values.length;
+
+    for (var i = 0; i < values_length; i++) {
+      var data = values[i];
+      var serie = {
+        name: i,
+        area: null,
+        values: []
+      };
+
+      for (var year in data) {
+        var value = data[year].value;
+        var area_name = data[year].area_name;
+        var area = data[year].area;
+
+        if (value) {
+          value = parseFloat(value);
+        }
+
+        serie.name = area_name;
+        serie.area = area;
+        serie.values.push(value);
+
+        if (years.indexOf(year) == -1) {
+          years.push(year);
+        }
+      }
+
+      series.push(serie);
+    }
+
+    if (maxValue) {
+      wesCountry.charts.chart({
+        chartType: "line",
+        container: "#" + div.id,
+        series: series,
+        valueOnItem: {
+          show: false
+        },
+        legend: {
+          show: false
+        },
+        xAxis: {
+          values: years,
+          margin: 24,
+          title: "",
+          "font-size": "13px"
+        },
+        yAxis: {
+          margin: 6,
+          title: "",
+          maxValue: 100,
+          tickNumber: 5,
+          "from-zero": true,
+          "font-size": "12px"
+        },
+        serieColours: colours,
+        margins: [8, 0, 4, noMargin ? 3 : 8],
+        showOverColour: false,
+        valueOnItem: {
+    			show: false
+        },
+        stroke: {
+          width: 3
+        },
+        events: {
+         "onmouseover": function(info) {
+           var area = info["data-area"];
+           var flag = global.functions.getFlag(area);
+           flag = flag.outerHTML;
+
+           var text = String.format("<div class='tooltip-wrapper'>{0} <span class='tooltip-name'>{1}</span> <span class='tooltip-value'>{3}</span> <span class='tooltip-year'>{2}</span></div>", flag, info.serie, info.pos, info.value);
+
+           wesCountry.charts.showTooltip(text, info.event);
+         },
+         "onmouseout": function() {
+           wesCountry.charts.hideTooltip();
+         }
+       }
+      });
+    } else {
+      div.style.display = "none";
+    }
+
+    return div;
+  };
+
   global.functions.renderValuePieChart = function(container, value, colour, indicator_code) {
     var label, wrapper;
     container.id = "c" + wesCountry.guid();
     wrapper = global.functions.renderPieChart("#" + container.id, value, colour, false, indicator_code);
     label = document.createElement("label");
     label.className = "value";
-    label.innerHTML = value ? parseFloat(value).toFixed(2) : "-";
+    label.innerHTML = value ? parseFloat(value).toFixed(2) : "N/A";
     return container.appendChild(label);
   };
 
-  global.functions.renderIndexPieChart = function(container, code, title, field, colour) {
-    var div, indexValues, label, pieContainer, rank, value, wrapper;
+  global.functions.renderIndexPieChart = function(container, code, title, field, colour, remainderColour) {
+    var div, indexValues, label, pieContainer, rank, value, wrapper, topLabel;
     indexValues = global.functions.getIndexValue(code);
     if (!indexValues) {
       return;
     }
-    value = indexValues[field].value;
-    rank = indexValues[field].ranked;
-    label = document.createElement("label");
-    label.className = "title " + (field.toLowerCase());
-    label.innerHTML = title;
-    container.appendChild(label);
+
+    var year = global.selections.year;
+
+    value = indexValues[field];
+    value =  (value && value[year] && value[year].value) ? value[year].value : 0;
+
+    rank = indexValues[field];
+    rank =  (rank && rank[year] && rank[year].ranked) ? rank[year].ranked : 0;
+
+    var div = document.createElement("div");
+    div.className = "wrapper-label wrapper-" + (field.toLowerCase());
+    container.appendChild(div);
+
+    topLabel = document.createElement("label");
+    topLabel.className = "title " + (field.toLowerCase());
+    topLabel.innerHTML = title;
+    div.appendChild(topLabel);
+
     pieContainer = document.createElement("div");
     pieContainer.id = "p" + wesCountry.guid();
     container.appendChild(pieContainer);
     container.id = "c" + wesCountry.guid();
-    wrapper = global.functions.renderPieChart("#" + pieContainer.id, value, colour, false, field, 100);
+    wrapper = global.functions.renderPieChart("#" + pieContainer.id, value, colour, false, field, 100, remainderColour);
     div = document.createElement("div");
     div.className = "values";
     container.appendChild(div);
@@ -363,19 +515,106 @@
     label = document.createElement("label");
     label.className = "ranking";
     label.innerHTML = rank;
-    return div.appendChild(label);
+    div.appendChild(label);
   };
 
+  global.functions.renderIndexLineChart = function(container, codes, title, field, colours, noMargin) {
+    var div, indexValues, label, lineContainer, rank, value, wrapper;
+
+    if (Object.prototype.toString.call(codes) !== '[object Array]') {
+      codes = [codes];
+    }
+
+    if (Object.prototype.toString.call(colours) !== '[object Array]') {
+      colours = [colours];
+    }
+
+    var codes_length = codes.length;
+    var values = [];
+
+    for (var i = 0; i < codes_length; i++) {
+      var code = codes[i];
+      indexValues = global.functions.getIndexValue(code);
+
+      if (!indexValues) {
+        return;
+      }
+
+      values.push(indexValues[field]);
+    }
+
+    var div = document.createElement("div");
+    div.className = "wrapper-label wrapper-" + (field.toLowerCase());
+    container.appendChild(div);
+    label = document.createElement("label");
+    label.className = "title " + (field.toLowerCase());
+    label.innerHTML = title;
+    div.appendChild(label);
+    lineContainer = document.createElement("div");
+    lineContainer.id = "p" + wesCountry.guid();
+    container.appendChild(lineContainer);
+    container.id = "c" + wesCountry.guid();
+    wrapper = global.functions.renderLineChart("#" + lineContainer.id, values, colours, false, field, 100, noMargin);
+  };
+
+  //////////////////////////////////////////////////////////////////////////////
+  //                              PIE CHARTS
+  //////////////////////////////////////////////////////////////////////////////
+
   global.functions.renderTheIndexPieChart = function(container, code, colour) {
-    return global.functions.renderIndexPieChart(container, code, "Affordability Index", "INDEX", colour);
+    return global.functions.renderIndexPieChart(container, code, formatChartTitle("Affordability Index"), "INDEX", colour);
+  };
+
+  global.functions.renderTheIndexPieChartComparison = function(container, code, colour, country) {
+    return global.functions.renderIndexPieChart(container, code, country, "INDEX", colour, global.colours.compare_back);
   };
 
   global.functions.renderInfrastructurePieChart = function(container, code, colour) {
-    return global.functions.renderIndexPieChart(container, code, "Communications Infrastructure sub-index", "INFRASTRUCTURE", colour);
+    return global.functions.renderIndexPieChart(container, code, formatChartTitle("Communications Infrastructure sub-index"), "INFRASTRUCTURE", colour);
+  };
+
+  global.functions.renderInfrastructurePieChartComparison = function(container, code, colour, country) {
+    return global.functions.renderIndexPieChart(container, code, country, "INFRASTRUCTURE", colour, global.colours.compare_back);
   };
 
   global.functions.renderAccessPieChart = function(container, code, colour) {
-    return global.functions.renderIndexPieChart(container, code, "Access sub-index", "ACCESS", colour);
+    return global.functions.renderIndexPieChart(container, code, formatChartTitle("Access sub-index"), "ACCESS", colour);
   };
+
+  global.functions.renderAccessPieChartComparison = function(container, code, colour, country) {
+    return global.functions.renderIndexPieChart(container, code, country, "ACCESS", colour, global.colours.compare_back);
+  };
+
+  //////////////////////////////////////////////////////////////////////////////
+  //                              LINE CHARTS
+  //////////////////////////////////////////////////////////////////////////////
+
+  global.functions.renderTheIndexLineChart = function(container, code, colour) {
+    return global.functions.renderIndexLineChart(container, code, formatChartTitle("Affordability Index"), "INDEX", colour, true);
+  };
+
+  global.functions.renderTheIndexLineChartComparison = function(container, codes, colour) {
+    return global.functions.renderIndexLineChart(container, codes, formatChartTitle("Affordability Index"), "INDEX", colour, true);
+  };
+
+  global.functions.renderInfrastructureLineChart = function(container, code, colour) {
+    return global.functions.renderIndexLineChart(container, code, formatChartTitle("Communications Infrastructure sub-index"), "INFRASTRUCTURE", colour);
+  };
+
+  global.functions.renderInfrastructureLineChartComparison = function(container, codes, colour) {
+    return global.functions.renderIndexLineChart(container, codes, formatChartTitle("Communications Infrastructure sub-index"), "INFRASTRUCTURE", colour);
+  };
+
+  global.functions.renderAccessLineChart = function(container, code, colour) {
+    return global.functions.renderIndexLineChart(container, code, formatChartTitle("Access sub-index"), "ACCESS", colour);
+  };
+
+  global.functions.renderAccessLineChartComparison = function(container, codes, colour) {
+    return global.functions.renderIndexLineChart(container, codes, formatChartTitle("Access sub-index"), "ACCESS", colour);
+  };
+
+  function formatChartTitle(title) {
+    return title + " (<span data-year>" + global.selections.year + "</span>)";
+  }
 
 }).call(this);

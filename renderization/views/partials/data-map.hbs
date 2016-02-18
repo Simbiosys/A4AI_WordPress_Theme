@@ -36,6 +36,18 @@
 <div id="charts" class="data-charts">
   <article class="selectors post static_page">
     <div class="entry">
+      <div class="year-select-wrapper">
+        <label for="year-selector" class="label">{{#labels}}{{select_year}}{{/labels}}</label>
+        <div class="button-wrapper button-year-wrapper">
+          <div class="select-wrapper small">
+            <select id="year-selector">
+            </select>
+          </div>
+          <button id="btn-year">
+            <span>{{#labels}}{{indicator_go}}{{/labels}}</span>
+          </button>
+        </div>
+      </div>
       <div class="indicator-select-wrapper">
         <label for="indicator-selector" class="label">{{#labels}}{{select_indicator}}{{/labels}}</label>
         <div class="button-wrapper">

@@ -38,7 +38,7 @@ class Visualisation1Model {
 		$areasInfo = json_decode(file_get_contents($api_url . '/areasInfo'), true);
 
 		// Indicators
-		$indicators = json_decode(file_get_contents($api_url . '/visualisationsGroupedByArea/ACCESS,INFRASTRUCTURE/ALL/LATEST'), true);
+		$indicators = json_decode(file_get_contents($api_url . '/visualisationsGroupedByArea/ACCESS,INFRASTRUCTURE/ALL/2014'), true);
 
 		return array(
 			"areas" => $areas,

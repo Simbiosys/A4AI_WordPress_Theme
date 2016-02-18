@@ -1,0 +1,20 @@
+<table class="data-table data-table-11 full-table" id="primary-research-scores-developing" data-sortable>
+<caption>{{caption}} (Top Developing Economies)</caption>
+<thead>
+<tr>
+	<th>Country</th>
+	<th>Effective Broadband Strategy</th>
+	<th>Healthy competition</th>
+	<th>Non-discriminatory access to spectrum</th>
+	<th>Infrastructure sharing</th>
+	<th>Strategies to deliver universal access to rural and under-served populations</th>
+</tr>
+</thead>
+<tbody>
+	<tr class="developing"><td data-value='Rwanda'>Rwanda</td><td data-title='Effective Broadband Strategy' data-number data-value='7.5'>7.5</td><td data-title='Healthy competition' data-number data-value='5.8'>5.8</td><td data-title='Non-discriminatory access to spectrum' data-number data-value='4.7'>4.7</td><td data-title='Infrastructure sharing' data-number data-value='6.3'>6.3</td><td data-title='Strategies to deliver universal access to rural and under-served populations' data-number data-value='6.5'>6.5</td></tr>
+	<tr class="developing"><td data-value='Nigeria'>Nigeria</td><td data-title='Effective Broadband Strategy' data-number data-value='6.0'>6.0</td><td data-title='Healthy competition' data-number data-value='6.2'>6.2</td><td data-title='Non-discriminatory access to spectrum' data-number data-value='6.5'>6.5</td><td data-title='Infrastructure sharing' data-number data-value='5.2'>5.2</td><td data-title='Strategies to deliver universal access to rural and under-served populations' data-number data-value='5.8'>5.8</td></tr>
+	<tr class="developing"><td data-value='Morocco'>Morocco</td><td data-title='Effective Broadband Strategy' data-number data-value='4.7'>4.7</td><td data-title='Healthy competition' data-number data-value='7.5'>7.5</td><td data-title='Non-discriminatory access to spectrum' data-number data-value='5.2'>5.2</td><td data-title='Infrastructure sharing' data-number data-value='4.2'>4.2</td><td data-title='Strategies to deliver universal access to rural and under-served populations' data-number data-value='6.3'>6.3</td></tr>
+	<tr class="developing"><td data-value='Uganda'>Uganda</td><td data-title='Effective Broadband Strategy' data-number data-value='6.3'>6.3</td><td data-title='Healthy competition' data-number data-value='5.9'>5.9</td><td data-title='Non-discriminatory access to spectrum' data-number data-value='4.7'>4.7</td><td data-title='Infrastructure sharing' data-number data-value='4.8'>4.8</td><td data-title='Strategies to deliver universal access to rural and under-served populations' data-number data-value='7.5'>7.5</td></tr>
+	<tr class="developing"><td dta-value='Kenya'>Kenya</td><td data-title='Effective Broadband Strategy' data-number data-value='5.3'>5.3</td><td data-title='Healthy competition' data-number data-value='6.4'>6.4</td><td data-title='Non-discriminatory access to spectrum' data-number data-value='4.3'>4.3</td><td data-title='Infrastructure sharing' data-number data-value='4.7'>4.7</td><td data-title='Strategies to deliver universal access to rural and under-served populations' data-number data-value='3.2'>3.2</td></tr>
+</tbody>
+</table>

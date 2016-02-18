@@ -3,7 +3,7 @@
         'flags' => Array(
             'jstrue' => false,
             'jsobj' => false,
-            'spvar' => false,
+            'spvar' => true,
             'prop' => false,
             'method' => false,
             'mustlok' => false,

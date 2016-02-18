@@ -1,0 +1,61 @@
+<table id="2015-top-five-table" class="data-table data-table-top">
+	<caption>{{caption}}</caption>
+	<thead>
+		<tr>
+			<th>Top 5: Overall ADI Rankings</th>
+			<th>Top 5: Least Developed Countries</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="country emerging">
+				<img src="{{host}}/images/flags-big/COL.png" class="flag" alt="flag of Colombia"> 
+				<span>Colombia</span>
+			</td>
+			<td class="country developing">
+				<img src="{{host}}/images/flags-big/RWA.png" class="flag" alt="flag of Rwanda">
+				<span>Rwanda</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="country emerging">
+				<img src="{{host}}/images/flags-big/CRI.png" class="flag" alt="flag of Costa Rica"> 
+				<span>Costa Rica</span>
+			</td>
+			<td class="country developing">
+				<img src="{{host}}/images/flags-big/UGA.png" class="flag" alt="flag of Uganda"> 
+				<span>Uganda</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="country emerging">
+				<img src="{{host}}/images/flags-big/MYS.png" class="flag" alt="flag of Malaysia"> 
+				<span>Malaysia</span>
+			</td>
+			<td class="country developing">
+				<img src="{{host}}/images/flags-big/GMB.png" class="flag" alt="flag of Gambia"> 
+				<span>Gambia</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="country emerging">
+				<img src="{{host}}/images/flags-big/TUR.png" class="flag" alt="flag of Turkey"> 
+				<span>Turkey</span>
+			</td>
+			<td class="country developing">
+				<img src="{{host}}/images/flags-big/MMR.png" class="flag" alt="flag of Myanmar">
+				<span>Myanmar</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="country emerging">
+				<img src="{{host}}/images/flags-big/PER.png" class="flag" alt="flag of Peru"> 
+				<span>Peru</span>
+			</td>
+			<td class="country developing">
+				<img src="{{host}}/images/flags-big/TZA.png" class="flag" alt="flag of Tanzania"> 
+				<span>Tanzania</span>
+			</td>
+		</tr>
+	</tbody>
+</table>

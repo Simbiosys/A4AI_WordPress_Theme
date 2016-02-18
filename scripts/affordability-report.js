@@ -46,7 +46,18 @@
       };
       _results.push(loopText(value, value_value, instant));
     }
-    return _results;
+
+    document.getElementById("view_all").onclick = function(event) {
+      var infographic = document.getElementById("infographic");
+
+      if (!infographic) {
+        return;
+      }
+
+      infographic.removeAttribute("data-closed");
+
+      this.parentNode.style.display = 'none';
+    }
   });
 
 }).call(this);

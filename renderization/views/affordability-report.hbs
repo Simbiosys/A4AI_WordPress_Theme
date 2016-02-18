@@ -1,4 +1,4 @@
-<section class="infographic">
+<section class="infographic" id="infographic" data-closed>
   <article class="post static_page">
     <h1>{{#labels}}{{affordability_hub_title}}{{/labels}}</h1>
     <div class="emerging">
@@ -15,23 +15,40 @@
     </div>
   </article>
 </section>
+<section class="infographic-more">
+  <a href="javascript:void(0)" class="more" id="view_all">
+    <span class="view-all">View all</span>
+  </a>
+</section>
 
 <article class="post static_page infographic-text">
   <div class="entry">
-    <nav class="hub-links">
-      <a href="{{host}}/affordability-report/report" class="report-link parallelogram">
-        <div class="link-content">
-          <i class="fa fa-book fa-5x"></i>
-          <p class="text">{{#labels}}{{{read_the_report}}}{{/labels}}</p>
-        </div>
-      </a>
-      <a href="{{host}}/affordability-report/data" class="data-link parallelogram">
-        <div class="link-content">
-          <i class="fa fa-area-chart fa-5x"></i>
-          <p class="text">{{#labels}}{{{explore_the_data}}}{{/labels}}</p>
-        </div>
-      </a>
+    <nav class="hub-boxes">
+      <ul>
+        <li>
+          <a href="{{host}}/affordability-report/report/2015">
+            <span class="text">Read the</span>
+            <strong class="text">2015 Report</strong>
+            <i class="background fa fa-file-text-o fa-4x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="{{host}}/affordability-report/report/2014">
+            <span class="text">Read the</span>
+            <strong class="text">2014 Report</strong>
+            <i class="background fa fa-file-text-o fa-4x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="{{host}}/affordability-report/data">
+            <span class="text">Explore the</span>
+            <strong class="text">Data</strong>
+            <i class="background fa fa-area-chart fa-4x"></i>
+          </a>
+        </li>
+      </ul>
     </nav>
+
     <section class="hub-text">
       {{{data.hub.content}}}
     </section>

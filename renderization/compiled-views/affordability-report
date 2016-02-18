@@ -3,7 +3,7 @@
         'flags' => Array(
             'jstrue' => false,
             'jsobj' => false,
-            'spvar' => false,
+            'spvar' => true,
             'prop' => false,
             'method' => false,
             'mustlok' => false,
@@ -111,7 +111,7 @@
 )
 
     );
-    return '<section class="infographic">
+    return '<section class="infographic" id="infographic" data-closed>
   <article class="post static_page">
     <h1>'.$cx['funcs']['sec']($cx, ((isset($in['labels']) && is_array($in)) ? $in['labels'] : null), $in, false, function($cx, $in) {return ''.htmlentities((string)((isset($in['affordability_hub_title']) && is_array($in)) ? $in['affordability_hub_title'] : null), ENT_QUOTES, 'UTF-8').'';}).'</h1>
     <div class="emerging">
@@ -244,23 +244,40 @@
     </div>
   </article>
 </section>
+<section class="infographic-more">
+  <a href="javascript:void(0)" class="more" id="view_all">
+    <span class="view-all">View all</span>
+  </a>
+</section>
 
 <article class="post static_page infographic-text">
   <div class="entry">
-    <nav class="hub-links">
-      <a href="'.htmlentities((string)((isset($in['host']) && is_array($in)) ? $in['host'] : null), ENT_QUOTES, 'UTF-8').'/affordability-report/report" class="report-link parallelogram">
-        <div class="link-content">
-          <i class="fa fa-book fa-5x"></i>
-          <p class="text">'.$cx['funcs']['sec']($cx, ((isset($in['labels']) && is_array($in)) ? $in['labels'] : null), $in, false, function($cx, $in) {return ''.((isset($in['read_the_report']) && is_array($in)) ? $in['read_the_report'] : null).'';}).'</p>
-        </div>
-      </a>
-      <a href="'.htmlentities((string)((isset($in['host']) && is_array($in)) ? $in['host'] : null), ENT_QUOTES, 'UTF-8').'/affordability-report/data" class="data-link parallelogram">
-        <div class="link-content">
-          <i class="fa fa-area-chart fa-5x"></i>
-          <p class="text">'.$cx['funcs']['sec']($cx, ((isset($in['labels']) && is_array($in)) ? $in['labels'] : null), $in, false, function($cx, $in) {return ''.((isset($in['explore_the_data']) && is_array($in)) ? $in['explore_the_data'] : null).'';}).'</p>
-        </div>
-      </a>
+    <nav class="hub-boxes">
+      <ul>
+        <li>
+          <a href="'.htmlentities((string)((isset($in['host']) && is_array($in)) ? $in['host'] : null), ENT_QUOTES, 'UTF-8').'/affordability-report/report/2015">
+            <span class="text">Read the</span>
+            <strong class="text">2015 Report</strong>
+            <i class="background fa fa-file-text-o fa-4x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="'.htmlentities((string)((isset($in['host']) && is_array($in)) ? $in['host'] : null), ENT_QUOTES, 'UTF-8').'/affordability-report/report/2014">
+            <span class="text">Read the</span>
+            <strong class="text">2014 Report</strong>
+            <i class="background fa fa-file-text-o fa-4x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="'.htmlentities((string)((isset($in['host']) && is_array($in)) ? $in['host'] : null), ENT_QUOTES, 'UTF-8').'/affordability-report/data">
+            <span class="text">Explore the</span>
+            <strong class="text">Data</strong>
+            <i class="background fa fa-area-chart fa-4x"></i>
+          </a>
+        </li>
+      </ul>
     </nav>
+
     <section class="hub-text">
       '.((isset($in['data']['hub']['content']) && is_array($in['data']['hub'])) ? $in['data']['hub']['content'] : null).'
     </section>

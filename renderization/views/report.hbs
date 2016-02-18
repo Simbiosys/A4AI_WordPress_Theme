@@ -1,48 +1,129 @@
+<link href='https://fonts.googleapis.com/css?family=Lora|Bitter|Slabo+13px' rel='stylesheet' type='text/css'>
+
 <input type="hidden" id="path" value="{{path}}"></input>
 
-<article class="post static_page report-post">
+<article class="post static_page report-post report-{{data.selected_report}}">
   <div class="entry report">
     <aside class="left-bar">
-      <h1>{{#labels}}{{report_chapters_title}}{{/labels}}</h1>
+      <h1 class="report-chapter-title">{{#labels}}{{report_chapters_title}}{{/labels}}</h1>
       <nav>
         <ul class="report-left-tags tags">
-          <li><a href="#table-of-contents"><span class="number"><i class="fa fa-list"></i></span> <span class="text">{{#labels}}{{table_of_contents}}{{/labels}}</span></a></li>
-          {{{data.report.ul}}}
+          <li>
+            <a href="#">
+              <span class="number table-contents"><i class="fa fa-list"></i></span>
+              <span class="text table-contents-left-link">{{#labels}}{{table_of_contents}}{{/labels}}</span>
+            </a>
+          </li>
+          {{#data.table_contents}}
+          <li>
+            <a href="#{{tag}}">
+              <span class="number">
+                {{number}}
+                <i class="fa fa-angle-right dot"></i>
+              </span>
+              <span class="text">{{title}}</span>
+            </a>
+          </li>
+          {{/data.table_contents}}
         </ul>
       </nav>
     </aside>
     <section class="right-content report-articles">
-      <p class="text-right download-link">
-        <a href="{{#labels}}{{report_download_link}}{{/labels}}"><i class="fa fa-file-pdf-o"></i> {{#labels}}{{report_download_label}}{{/labels}}</a>
+      <div class="report-year-selector">
+        <select id="year-selector" class="">
+          {{#data.years}}
+            <option {{select_selected @root.data.selected_report this}} value="{{@root.host}}/affordability-report/report/{{this}}">{{this}}</option>
+          {{/data.years}}
+        </select>
+        <button id="btn-year">
+          <span>{{labels.indicator_go}}</span>
+        </button>
+      </div>
+      <p class="text-right report-top-text">
+        {{{data.report.post_content}}}
       </p>
-      <p class="text-right download-link">
-        <a href="{{#labels}}{{report_download_link_es}}{{/labels}}"><i class="fa fa-file-pdf-o"></i> {{#labels}}{{report_download_label_es}}{{/labels}}</a>
-      </p>
-      <p class="text-right download-link">
-        <a href="{{#labels}}{{report_download_link_pt}}{{/labels}}"><i class="fa fa-file-pdf-o"></i> {{#labels}}{{report_download_label_pt}}{{/labels}}</a>
-      </p>
-      <h1>{{#labels}}{{report_title}}{{/labels}}</h1>
+      <h1 class="report-title">{{data.report.post_title}}</h1>
       <nav class="report-table-contents">
-        <h2>{{#labels}}{{table_of_contents}}{{/labels}}</h2>
-        <ol id="table-of-contents">
-          {{{data.report.table}}}
+        <h2 class="table-contents-title">{{#labels}}{{table_of_contents}}{{/labels}}</h2>
+        <ol id="table-of-contents" class="table-of-contents">
+          {{#data.table_contents}}
+            <li class="level1">
+              <a href="#{{tag}}" class="index-number">{{number}}</a>
+              <a href="#{{tag}}">{{title}}</a>
+              {{#if contents}}
+              <i class="fa fa-angle-down fa-2x"></i>
+              <ol>
+                {{#contents}}
+                <li class="level2 level-{{level}}">
+                  <a href="#{{tag}}">{{number}} {{title}}</a>
+                </li>
+                {{/contents}}
+              </ol>
+              {{/if}}
+            </li>
+          {{/data.table_contents}}
           <li>
-          {{#labels}}{{list_of_figures}}{{/labels}} <i class='fa fa-angle-down fa-2x'></i>
-          <ul>
-            {{#data.report.figures}}
-              <li><a href="#{{id}}">{{caption}}</a></li>
-            {{/data.report.figures}}
-            <li><a href="#internet-disparity-chart">Figure 1. Internet Users: Urban vs Rural</a></li>
-            <li><a href="#affordability-index-chart">Figure 2. Affordability Index Scores and Broadband Prices</a></li>
-            <li><a href="#affordability-graphic">Figure 3. Foundations of Internet Affordability</a></li>
-            <li><a href="#itus-cluster-chart">Figure 4. Broadband Strategies and Prices</a></li>
-            <li><a href="#itus-ieaa-chart">Figure 5. Electrification Rates and Broadband Prices</a></li>
+          <i class="fa fa-bar-chart fa-lg icon-list-figures"></i> {{#labels}}{{list_of_figures}}{{/labels}} <i class='fa fa-angle-down fa-2x'></i>
+          <ul class="list-of-figures">
+            <ol>
+              {{#data.list_tables}}
+                <li>
+                  <i class="fa fa-table fa-lg icon-list-figures"></i>
+                  <a href="#{{tag}}" class="chapter-indicator-container"><span class="chapter-indicator ch-{{chapter}}">{{chapter}}</span> Table {{index}}. {{title}}</a>
+                </li>
+              {{/data.list_tables}}
+              {{#data.list_figures}}
+                <li>
+                  <i class="fa fa-bar-chart fa-lg icon-list-figures"></i>
+                  <a href="#{{tag}}" class="chapter-indicator-container"><span class="chapter-indicator ch-{{chapter}}">{{chapter}}</span> Figure {{index}}. {{title}}</a>
+                </li>
+              {{/data.list_figures}}
+            </ol>
           </ol>
         </li>
       </nav>
 
       <div class="articles">
-        {{{data.report.content}}}
+        {{#data.chapters}}
+          <article class="text-article" id="{{tag}}">
+            <hr />
+            <p class="chapter">{{number}}</p>
+            <h1>{{title}}</h1>
+            <nav>
+              <ul class="tags">
+                {{#subchapters}}
+                  <li>
+                    <a href="#{{tag}}">{{number}} {{title}}</a>
+                  </li>
+                {{/subchapters}}
+              </ul>
+            </nav>
+            {{#contents}}
+              <section data-report-content class="{{class}} {{#if is_highlighted}} box {{/if}} {{#if is_chart}} report-chart-container {{/if}}">
+                {{#if is_table}}
+                  {{{table_caption table_contents post_title tag table_index}}}
+                {{else}}
+                  {{{chapter_title this @root.data.headings}}}
+                {{/if}}
+                {{#if is_chart}}
+                  <div id="{{chart}}" class="charts"></div>
+                {{/if}}
+                <div>
+                  {{#if show_icon}}
+                    <i class="fa fa-certificate fa-5x box-icon"></i>
+                  {{/if}}
+                  <div {{#if show_icon}} class="icon-padding" {{/if}}>
+                    {{{post_content}}}
+                  </div>
+                </div>
+              </section>
+            {{/contents}}
+          </article>
+        {{/data.chapters}}
+      </div>
+      <div class="footnotes" id="footnotes">
+        <h2>Notes</h2>
+        <ol id="footnotes_container"></ol>
       </div>
     </section>
   </div>

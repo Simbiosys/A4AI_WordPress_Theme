@@ -85,13 +85,16 @@
 
   global.listFunctions.renderTable = function(areas, developingColours, emergingColours, minDeveloping, minEmerging) {
     var area, area_type, code, colour, continent, continentName, count, countryListBody, isMobile, name, p, positions, rank, scale, td, tdIndex, tdSubindex1, tdSubindex2, tdValue, top, tr, trExists, value, _i, _len, _ref, _ref1;
+
     countryListBody = global.ref.countryListBody;
+
     isMobile = global.functions.isMobile();
     count = 1;
     top = 0;
     positions = [];
     sortAreasByRank(areas);
     scale = (_ref = global.selections.indicatorOption) != null ? _ref.getAttribute("data-scale") : void 0;
+
     for (_i = 0, _len = areas.length; _i < _len; _i++) {
       area = areas[_i];
       name = area.short_name;
@@ -113,7 +116,15 @@
           return global.functions.selectCountryInSelector(this.getAttribute("data-area"));
         };
       }
+
       tr.style.top = top + "px";
+
+      var tdWidth = null;
+
+      if (tr.offsetWidth && tr.offsetWidth > 0) {
+        tdWidth = tr.offsetWidth / 10;
+      }
+
       if (trExists) {
         td = tr.querySelector("td.ranking");
       } else {
@@ -121,9 +132,15 @@
         td.className = "ranking " + area_type + (rank ? "" : " empty");
         tr.appendChild(td);
       }
+
       if (td != null) {
         td.innerHTML = rank ? rank : "-";
+
+        if (tdWidth) {
+          td.style.minWidth = tdWidth + "px";
+        }
       }
+
       if (trExists) {
         td = tr.querySelector("td.flag");
       } else {
@@ -191,6 +208,7 @@
       top += tr.offsetHeight;
       count++;
     }
+
     if (isMobile) {
       tr = countryListBody.querySelector("tr.see-more");
       trExists = tr ? true : false;
