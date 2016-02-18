@@ -5203,12 +5203,21 @@ article.report-post {
   margin-right: 1em;
   vertical-align: middle; }
 .chart-tooltip .country {
-  margin: 0 1em; }
+  margin: 0 1em; 
+  position: relative;
+  top: 13px;  
+}
 .chart-tooltip .text {
   margin: 0 1em;
-  color: #888; }
+  color: #888; 
+  position: relative;
+  top: 13px;
+}
 .chart-tooltip .value {
-  font-weight: 500; }
+  font-weight: 500; 
+  position: relative;
+  top: 13px;
+}
 
 /* affordability-graphic */
 div.affordability-graphic > div {
@@ -7514,6 +7523,12 @@ table[data-sortable] th[data-status='down'] .fa-caret-down {
   padding-right: 10px !important;
   min-width: 320px;
   text-align: center;
+}
+
+@-moz-document url-prefix() { 
+  .wesCountry-tooltip {
+     position: fixed !important;
+  }
 }
 
 .tooltip-year {
