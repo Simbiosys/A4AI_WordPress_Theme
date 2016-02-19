@@ -150,7 +150,7 @@ includes the tag {{caption}} that is replaced in the PHP code.
 The <table> tag must have a unique id. Once the table is created you should include it in
 the function generateDataTables of the file /renderization/utils/report_utils.php.
 
-Thar function returns an object that includes the catalogue of tables for each year. The
+That function returns an object that includes the catalogue of tables for each year. The
 identifier of the table in that object must match the id you set in the <table> tag.
 
 After creating a table you need to delete the cached file:
@@ -187,14 +187,17 @@ they are needed, they are created if the model does not find them.
 //															Data Explorer
 ////////////////////////////////////////////////////////////////////////////////
 
-The data explorer view, data, is compound of these other partial views:
+The data explorer view, data, is compound of these other partial views:   
+// in folder renderization/views/partials/
 
 - data-map Renders the world map.
 - data-list Renders the table under the map.
 - data-country-search It's the country search control at the top right corner.
 - data-country It's the country detail box. It includes the comparison section.
 
+
 This view includes the following JS scripts:
+// in folder scripts/
 
 - data/functions.js Auxiliary functions for the data explorer.
 - data/list.js To render the table under the map.
@@ -224,3 +227,12 @@ is not stored in local storage, so if you refresh the page is memory is cleaned.
 
 JSONP is used to get the data, and the function getObservationsCallback is the
 callback of the request.
+
+////////////////////////////////////////////////////////////////////////////////
+//															Visualisations
+////////////////////////////////////////////////////////////////////////////////
+
+2014 Version included two visualisations, visualisation1 and visualisation2.
+
+There are views, JavaScript files and models for them. And they are also cached
+in /renderization/data/data as visualisation1.json and visualisation2.json
