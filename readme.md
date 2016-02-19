@@ -188,21 +188,19 @@ they are needed, they are created if the model does not find them.
 ////////////////////////////////////////////////////////////////////////////////
 
 The data explorer view, data, is compound of these other partial views:   
-// in folder renderization/views/partials/
 
-- data-map Renders the world map.
-- data-list Renders the table under the map.
-- data-country-search It's the country search control at the top right corner.
-- data-country It's the country detail box. It includes the comparison section.
+- /renderization/views/partials/data-map Renders the world map.
+- /renderization/views/partials/data-list Renders the table under the map.
+- /renderization/views/partials/data-country-search It's the country search control at the top right corner.
+- /renderization/views/partials/data-country It's the country detail box. It includes the comparison section.
 
 
 This view includes the following JS scripts:
-// in folder scripts/
 
-- data/functions.js Auxiliary functions for the data explorer.
-- data/list.js To render the table under the map.
-- data/map.js To render the map, control the main user actions and page status.
-- data/search.js To control the country search.
+- /scripts/data/functions.js Auxiliary functions for the data explorer.
+- /scripts/data/list.js To render the table under the map.
+- /scripts/data/map.js To render the map, control the main user actions and page status.
+- /scripts/data/search.js To control the country search.
 
 At the bottom of the data.hbs template you will find that the initial data is
 loaded there and the function loadInitialData is invoked to start the page
