@@ -87,7 +87,8 @@
       country_other_legend: document.getElementById("country-other-legend"),
       country_detail_wrapper: document.getElementById("country-detail-wrapper"),
       year_selector: document.getElementById("year-selector"),
-      btn_year: document.getElementById("btn-year")
+      btn_year: document.getElementById("btn-year"),
+      data_download_link: document.getElementById("data_download_link")
     };
   };
 

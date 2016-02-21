@@ -68,6 +68,17 @@
               var label = labels[i];
               label.innerHTML = value;
             }
+
+            if (value == "2014") {
+              if (global.ref.data_download_link) {
+                global.ref.data_download_link.href = "/wp-content/uploads/2015/03/Affordability-Index_Indicators.xlsx";
+              }
+            }
+            else {
+              if (global.ref.data_download_link) {
+                global.ref.data_download_link.href = "/wp-content/uploads/2016/02/ADI-2015-data-for-download.xlsx";
+              }
+            }
           }
         },
         {
@@ -782,7 +793,9 @@
       return a_value < b_value ? 1 : -1;
     });
 
-    global.ref.year_selector.innerHTML = "";
+    if (global.ref.year_selector) {
+      global.ref.year_selector.innerHTML = "";
+    }
 
     var years_length = years.length;
 
@@ -871,7 +884,7 @@
 
   getCountryExtraInfo = function(code, population, gni, broadband, poverty) {
     getExtraInfoValue(code, "SP_POP_TOTL", population, 0, "", "");
-    getExtraInfoValue(code, "NY_GNP_PCAP_PP_CD", gni, 2, "USD ", "");
+    getExtraInfoValue(code, "NY_GNP_PCAP_CD", gni, 2, "USD ", "");
     getExtraInfoValue(code, "mobile_broadband_percentage_GNI", broadband, 2, "", "%");
     return getExtraInfoValue(code, "SI_POV_2DAY", poverty, 2, "", "%");
   };

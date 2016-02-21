@@ -7512,8 +7512,17 @@ table[data-sortable] th[data-status='down'] .fa-caret-down {
   z-index: 7000;
   padding-left: 10px !important;
   padding-right: 10px !important;
-  min-width: 320px;
+  /*min-width: 320px;*/
   text-align: center;
+  width: calc(100% - 20px);
+  left: 10px !important;
+}
+
+@media (min-width: 768px) {
+  .wesCountry-tooltip {
+      width: auto;
+      left: inherit !important;
+  }
 }
 
 .tooltip-year {
@@ -8419,4 +8428,10 @@ td.country:first-child {
 .report-l p {
 	margin: 0 !important;
 	display: inline;
+}
+
+@-moz-document url-prefix() {
+  .wesCountry-tooltip {
+     position: fixed !important;
+  }
 }
