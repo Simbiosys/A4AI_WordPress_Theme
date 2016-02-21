@@ -820,13 +820,3 @@ div.affordability-graphic h4 {
     text-align: left;
     font-weight: normal;
     font-family: inherit; }
-
-[data-anchored='true'] {
-  background-color: #0489B1;
-  color: #fff;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  text-align: center;
-  padding-top: 4px;
-}

@@ -60,5 +60,6 @@
   "subindex_1_title": "Communications Infrastructure sub-index",
   "subindex_2_title": "Access sub-index",
   "press_to_change_graph": "Press to change chart type",
-  "values": "Values"
+  "values": "Values",
+  "select_year": "Select a year"
 }

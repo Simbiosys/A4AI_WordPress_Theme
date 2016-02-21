@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="{{root}}/renderization/dashboard/css/dragula.min.css" />
+<link rel="stylesheet" href="{{root}}/renderization/dashboard/css/reports.css" />
+
+<div class="wrap report-wrap">
+  <h1>{{title}}</h1>
+  <nav class="overflow-hidden">
+    <label for="report">Select a report</label>
+    <select id="report" class="report-select">
+      {{#reports}}
+        <option value="{{ID}}" {{selected_item ID @root.selected.ID}}>{{post_name}}</option>
+      {{/reports}}
+    </select>
+    <a href="{{host}}/wp-admin/post-new.php?post_type=report" class="add-new-h2 add-new-report float-right">
+      Add New Report
+    </a>
+  </nav>
+  <nav class="report-nav">
+    <h2 class="report-title width-70 float-left">Report: {{selected.post_title}}</h2>
+    <div class="report-actions width-30 float-right">
+      <a href="javascript:void(0)" class="add-new-h2 edit-reports" title="Expand all blocks" id="expand_all">
+        <i class="fa fa-eye fa-lg"></i>
+      </a>
+      <a href="{{host}}/affordability-report/report/{{selected.post_name}}" class="add-new-h2 edit-reports" title="Preview" id="preview" target="_blank">
+        <i class="fa fa-search fa-lg"></i>
+      </a>
+      <a href="{{host}}/wp-admin/post.php?post={{selected.ID}}&action=edit" class="add-new-h2 edit-reports">
+        Edit Report Details
+      </a>
+    </div>
+  </nav>
+  <ul class="report-items" id="report_items">
+    {{#items}}
+      <li class="report-item text block-type-{{meta-box-block-type}} chapter-{{first_level_numeric}}" data-report-item="{{ID}}" data-order="{{meta-box-order}}">
+        <nav class="report-item-add">
+          <a href="{{@root.host}}/wp-admin/post-new.php?post_type=report_item&report={{@root.selected.ID}}&order={{get_item_index @index}}" title="Create a new block at this point">
+            <i class="fa fa-plus fa-2x"></i>
+          </a>
+        </nav>
+        <nav class="nav-heading_1">
+          <span>
+            1<sup>st</sup> Level Heading
+          </span>
+        </nav>
+        <nav class="nav-heading_2">
+          <span>
+            2<sup>nd</sup> Level Heading
+          </span>
+        </nav>
+        <nav class="nav-heading_3">
+        </nav>
+        <nav class="nav-heading_4">
+        </nav>
+        <nav class="nav-heading_5">
+        </nav>
+        <section class="report-item-body">
+          <header class="report-item-header">
+            <nav class="report-item-actions">
+              <a href="javascript:void(0)" class="report-item-view" title="Click to maintain expanded" data-open="{{ID}}">
+                <i class="fa fa-eye fa-2x"></i>
+              </a>
+              <a href="{{@root.host}}/wp-admin/post.php?post_type=report_item&post={{ID}}&report={{@root.selected.ID}}&action=edit" class="report-item-edit" title="Edit block">
+                <i class="fa fa-pencil fa-2x"></i>
+              </a>
+              <a href="" class="report-item-drag" title="Click and drag to reorder">
+                <i class="fa fa-bars fa-2x"></i>
+              </a>
+              <div class="report-item-reorder">
+                <a href="javascript:void(0)" class="report-item-reorder-up" title="Move up" data-move-up="{{ID}}">
+                  <i class="fa fa-caret-up fa-2x"></i>
+                </a>
+                <a href="javascript:void(0)" class="report-item-reorder-down" title="Move down" data-move-down="{{ID}}">
+                  <i class="fa fa-caret-down fa-2x"></i>
+                </a>
+              </div>
+            </nav>
+            <h3 class="report-item-title">
+              {{#if index}}
+                <span class="report-index">{{index}}</span>
+              {{/if}}
+              {{post_title}}
+            </h3>
+          </header>
+          {{#if show_icon}}
+            <span class='highlighted-icon'>
+              <i class="fa fa-certificate fa-4x"></i>
+            </span>
+          {{/if}}
+          <div class="report-item-content {{#if show_icon}} highlighted-icon-shown {{/if}}" data-content="{{ID}}">
+            {{{post_content}}}
+            {{#if is_table}}
+            <div class="table-content">
+              <p>
+                <i class="fa fa-table fa-lg"></i> {{table}}
+              </p>
+              {{{format_table table_contents}}}
+            </div>
+            {{/if}}
+            {{#if is_chart}}
+              <div id="{{chart}}" class="chart"></div>
+            {{/if}}
+          </div>
+          <span class="report-item-order" data-order-number id="block-{{meta-box-order}}">{{meta-box-order}}</span>
+        </section>
+      </li>
+    {{/items}}
+
+    <li class="report-item">
+      <nav class="report-item-add last">
+        <a href="{{@root.host}}/wp-admin/post-new.php?post_type=report_item&report={{@root.selected.ID}}&order=-1" title="Add new block">
+          <i class="fa fa-plus fa-2x"></i>
+        </a>
+        <p>Add new block</p>
+      </nav>
+    </li>
+  </ul>
+</div>
+
+<script src="{{root}}/renderization/dashboard/js/dragula.min.js"></script>
+<script src="{{root}}/renderization/dashboard/js/reports.js"></script>
+<script src="{{root}}/scripts/libraries/wesCountry.min.js"></script>
+<script src="{{root}}/scripts/report-charts.js"></script>
